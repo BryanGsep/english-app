@@ -1,0 +1,3682 @@
+{
+ "decks": [
+  {
+   "id": "hydro",
+   "name": "Thủy văn & Dòng chảy",
+   "icon": "💧",
+   "desc": "Lưu vực, dòng chảy, hồ chứa, hạn hán"
+  },
+  {
+   "id": "flood",
+   "name": "Lũ lụt & Thiệt hại",
+   "icon": "🌊",
+   "desc": "Ngập lụt, sạt lở, hàm thiệt hại"
+  },
+  {
+   "id": "climate",
+   "name": "Khí hậu & Kịch bản",
+   "icon": "🌡️",
+   "desc": "Biến đổi khí hậu, mô hình, hiệu chỉnh"
+  },
+  {
+   "id": "drr",
+   "name": "Thiên tai & Xã hội",
+   "icon": "🏘️",
+   "desc": "Rủi ro, tổn thương, nghèo, sinh kế"
+  },
+  {
+   "id": "geo",
+   "name": "GIS, Viễn thám & Dữ liệu",
+   "icon": "🛰️",
+   "desc": "Bản đồ, mô hình hoá, độ chính xác"
+  },
+  {
+   "id": "academic",
+   "name": "Tiếng Anh học thuật",
+   "icon": "📄",
+   "desc": "Động từ và mẫu câu trong paper"
+  }
+ ],
+ "cards": [
+  {
+   "term": "basin",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "lưu vực",
+   "en": "the whole area of land drained by a river and its tributaries"
+  },
+  {
+   "term": "river basin",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "lưu vực sông",
+   "en": "the land area from which a river collects its water"
+  },
+  {
+   "term": "watershed",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "lưu vực hứng nước; đường phân thủy",
+   "en": "an area of land that drains to a single outlet point"
+  },
+  {
+   "term": "catchment",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "lưu vực hứng nước",
+   "en": "the area where rainfall is collected and drains to a river"
+  },
+  {
+   "term": "discharge",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "lưu lượng dòng chảy",
+   "en": "the volume of water flowing past a point per unit of time"
+  },
+  {
+   "term": "runoff",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "dòng chảy mặt",
+   "en": "rainfall that flows over the ground instead of soaking in"
+  },
+  {
+   "term": "streamflow",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "dòng chảy sông suối",
+   "en": "the flow of water in a stream channel"
+  },
+  {
+   "term": "hydrological",
+   "pos": "adj",
+   "deck": "hydro",
+   "vi": "thuộc thủy văn",
+   "en": "relating to the movement and distribution of water"
+  },
+  {
+   "term": "hydrological model",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "mô hình thủy văn",
+   "en": "a computer model that simulates how water moves through a basin"
+  },
+  {
+   "term": "rainfall",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "lượng mưa",
+   "en": "the amount of rain that falls in a place over a period"
+  },
+  {
+   "term": "precipitation",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "giáng thủy (mưa, tuyết)",
+   "en": "water falling from the sky as rain, snow or hail"
+  },
+  {
+   "term": "evapotranspiration",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "bốc thoát hơi nước",
+   "en": "water lost to the air from soil evaporation and plant transpiration"
+  },
+  {
+   "term": "infiltration",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "sự thấm nước vào đất",
+   "en": "the process of water soaking into the soil"
+  },
+  {
+   "term": "groundwater",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "nước ngầm",
+   "en": "water held underground in soil and rock"
+  },
+  {
+   "term": "reservoir",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "hồ chứa",
+   "en": "an artificial lake used to store water"
+  },
+  {
+   "term": "reservoir inflow",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "lưu lượng nước về hồ",
+   "en": "the water entering a reservoir from upstream"
+  },
+  {
+   "term": "dam operation",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "vận hành đập",
+   "en": "the way water is released from or stored in a dam"
+  },
+  {
+   "term": "water balance",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "cân bằng nước",
+   "en": "the accounting of water coming in, going out and being stored"
+  },
+  {
+   "term": "water availability",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "lượng nước sẵn có",
+   "en": "how much water can actually be used in a place and time"
+  },
+  {
+   "term": "water resources",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "tài nguyên nước",
+   "en": "the water supplies available for human and ecological use"
+  },
+  {
+   "term": "drought",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "hạn hán",
+   "en": "a long period with much less water than normal"
+  },
+  {
+   "term": "hydrological drought",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "hạn thủy văn",
+   "en": "a drought defined by low river flow and low storage"
+  },
+  {
+   "term": "upstream",
+   "pos": "adv",
+   "deck": "hydro",
+   "vi": "thượng lưu",
+   "en": "toward the source of a river"
+  },
+  {
+   "term": "downstream",
+   "pos": "adv",
+   "deck": "hydro",
+   "vi": "hạ lưu",
+   "en": "toward the mouth of a river"
+  },
+  {
+   "term": "tributary",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "phụ lưu, nhánh sông",
+   "en": "a smaller river that flows into a larger one"
+  },
+  {
+   "term": "estuary",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "cửa sông",
+   "en": "the wide mouth of a river where it meets the sea"
+  },
+  {
+   "term": "free-flowing",
+   "pos": "adj",
+   "deck": "hydro",
+   "vi": "chảy tự do (không bị chặn)",
+   "en": "flowing without being blocked by dams or barriers"
+  },
+  {
+   "term": "sediment",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "trầm tích, bùn cát",
+   "en": "solid material carried and deposited by water"
+  },
+  {
+   "term": "soil erosion",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "xói mòn đất",
+   "en": "the wearing away of soil by water or wind"
+  },
+  {
+   "term": "channel migration",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "sự dịch chuyển lòng sông",
+   "en": "the sideways movement of a river channel over time"
+  },
+  {
+   "term": "water quality",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "chất lượng nước",
+   "en": "how suitable water is for use, measured by its content"
+  },
+  {
+   "term": "nutrient",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "chất dinh dưỡng",
+   "en": "a substance such as nitrogen that feeds plants but can pollute water"
+  },
+  {
+   "term": "hydropower",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "thủy điện",
+   "en": "electricity generated from flowing water"
+  },
+  {
+   "term": "ungauged",
+   "pos": "adj",
+   "deck": "hydro",
+   "vi": "không có trạm quan trắc",
+   "en": "having no measuring station, so no observed data"
+  },
+  {
+   "term": "flood",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "lũ, lụt",
+   "en": "an overflow of water onto land that is normally dry"
+  },
+  {
+   "term": "flooding",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "sự ngập lụt",
+   "en": "the event or process of water covering land"
+  },
+  {
+   "term": "inundation",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "sự ngập nước",
+   "en": "the covering of land by water"
+  },
+  {
+   "term": "flood inundation",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "ngập do lũ",
+   "en": "the extent of land covered by water during a flood"
+  },
+  {
+   "term": "flood hazard",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "hiểm họa lũ",
+   "en": "the physical flood event that could cause harm"
+  },
+  {
+   "term": "flood risk",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "rủi ro lũ",
+   "en": "hazard combined with exposure and vulnerability"
+  },
+  {
+   "term": "flood damage",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "thiệt hại do lũ",
+   "en": "the harm to property and people caused by a flood"
+  },
+  {
+   "term": "flood control",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "kiểm soát lũ",
+   "en": "measures taken to reduce flooding"
+  },
+  {
+   "term": "flood duration",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "thời gian ngập",
+   "en": "how long floodwater stays on the land"
+  },
+  {
+   "term": "inundation depth",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "độ sâu ngập",
+   "en": "how deep the floodwater is at a location"
+  },
+  {
+   "term": "damage function",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "hàm thiệt hại",
+   "en": "a curve linking flood depth or duration to the loss it causes"
+  },
+  {
+   "term": "return period",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "chu kỳ lặp lại",
+   "en": "the average number of years between events of a given size"
+  },
+  {
+   "term": "early warning system",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "hệ thống cảnh báo sớm",
+   "en": "a system that alerts people before a disaster arrives"
+  },
+  {
+   "term": "levee",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "đê",
+   "en": "a raised bank built to stop a river overflowing"
+  },
+  {
+   "term": "embankment",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "bờ đắp, nền đắp",
+   "en": "a wall of earth built to hold back water or carry a road"
+  },
+  {
+   "term": "floodplain",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "vùng bãi ngập lũ",
+   "en": "the flat land beside a river that floods regularly"
+  },
+  {
+   "term": "overflow",
+   "pos": "v",
+   "deck": "flood",
+   "vi": "tràn bờ",
+   "en": "to flow over the edge or bank"
+  },
+  {
+   "term": "storm surge",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "nước dâng do bão",
+   "en": "a rise in sea level pushed onshore by a storm"
+  },
+  {
+   "term": "landslide",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "sạt lở đất",
+   "en": "a mass of rock and soil sliding down a slope"
+  },
+  {
+   "term": "landslide susceptibility",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "mức nhạy cảm sạt lở",
+   "en": "how likely a slope is to fail, mapped from terrain factors"
+  },
+  {
+   "term": "slope failure",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "phá hoại mái dốc",
+   "en": "the collapse of a slope under gravity or water pressure"
+  },
+  {
+   "term": "economic loss",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "thiệt hại kinh tế",
+   "en": "the money value of the damage caused"
+  },
+  {
+   "term": "residential building",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "nhà ở",
+   "en": "a building where people live"
+  },
+  {
+   "term": "housing structure",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "kết cấu nhà ở",
+   "en": "the type and material of a house, affecting its strength"
+  },
+  {
+   "term": "physical vulnerability",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "tính dễ tổn thương vật lý",
+   "en": "how easily buildings and structures are damaged"
+  },
+  {
+   "term": "recurrent flood",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "lũ lặp lại nhiều lần",
+   "en": "flooding that happens repeatedly in the same place"
+  },
+  {
+   "term": "mitigate",
+   "pos": "v",
+   "deck": "flood",
+   "vi": "giảm nhẹ",
+   "en": "to make something harmful less severe"
+  },
+  {
+   "term": "mitigation",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "sự giảm nhẹ",
+   "en": "action taken to reduce the severity of an impact"
+  },
+  {
+   "term": "countermeasure",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "biện pháp đối phó",
+   "en": "an action taken to oppose a threat"
+  },
+  {
+   "term": "severe",
+   "pos": "adj",
+   "deck": "flood",
+   "vi": "nghiêm trọng",
+   "en": "very bad, intense or serious"
+  },
+  {
+   "term": "climate change",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "biến đổi khí hậu",
+   "en": "long-term shifts in temperature and weather patterns"
+  },
+  {
+   "term": "adaptation",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "sự thích ứng",
+   "en": "adjusting systems and behaviour to cope with a changing climate"
+  },
+  {
+   "term": "global warming",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "sự nóng lên toàn cầu",
+   "en": "the long-term rise in Earth's average temperature"
+  },
+  {
+   "term": "greenhouse gas",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "khí nhà kính",
+   "en": "a gas such as CO2 that traps heat in the atmosphere"
+  },
+  {
+   "term": "emission",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "sự phát thải",
+   "en": "the release of a gas or substance into the air"
+  },
+  {
+   "term": "scenario",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "kịch bản",
+   "en": "one plausible description of how the future may develop"
+  },
+  {
+   "term": "projection",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "dự tính tương lai",
+   "en": "a model-based estimate of a future condition under assumptions"
+  },
+  {
+   "term": "project",
+   "pos": "v",
+   "deck": "climate",
+   "vi": "dự tính, chiếu tới tương lai",
+   "en": "to estimate a future value from a model"
+  },
+  {
+   "term": "climate model",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "mô hình khí hậu",
+   "en": "a physics-based simulation of the climate system"
+  },
+  {
+   "term": "downscaling",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "chi tiết hóa (hạ quy mô)",
+   "en": "converting coarse global model output into local-scale detail"
+  },
+  {
+   "term": "bias correction",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "hiệu chỉnh sai lệch",
+   "en": "adjusting model output so it matches observed statistics"
+  },
+  {
+   "term": "quantile mapping",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "ánh xạ phân vị",
+   "en": "a bias-correction method that matches distributions percentile by percentile"
+  },
+  {
+   "term": "ensemble",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "tổ hợp (nhiều mô hình)",
+   "en": "a set of model runs used together to show a range of outcomes"
+  },
+  {
+   "term": "trend",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "xu thế",
+   "en": "a general direction of change over time"
+  },
+  {
+   "term": "variability",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "tính biến động",
+   "en": "how much a quantity fluctuates around its average"
+  },
+  {
+   "term": "extreme precipitation",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "mưa cực đoan",
+   "en": "rainfall far above normal intensity"
+  },
+  {
+   "term": "anomaly",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "dị thường, chênh lệch so với chuẩn",
+   "en": "the difference between a value and its long-term average"
+  },
+  {
+   "term": "baseline",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "thời kỳ nền, mốc so sánh",
+   "en": "the reference period or value that changes are compared against"
+  },
+  {
+   "term": "exacerbate",
+   "pos": "v",
+   "deck": "climate",
+   "vi": "làm trầm trọng thêm",
+   "en": "to make a bad situation worse"
+  },
+  {
+   "term": "resilience",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "khả năng chống chịu và phục hồi",
+   "en": "the ability to absorb a shock and recover quickly"
+  },
+  {
+   "term": "sustainable development",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "phát triển bền vững",
+   "en": "development that meets present needs without harming the future"
+  },
+  {
+   "term": "long-term",
+   "pos": "adj",
+   "deck": "climate",
+   "vi": "dài hạn",
+   "en": "covering or lasting a long period of time"
+  },
+  {
+   "term": "warming",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "sự ấm lên",
+   "en": "an increase in temperature over time"
+  },
+  {
+   "term": "disaster",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "thảm họa, thiên tai",
+   "en": "an event causing serious damage that overwhelms local capacity"
+  },
+  {
+   "term": "disaster risk reduction",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "giảm nhẹ rủi ro thiên tai",
+   "en": "the practice of reducing damage caused by natural hazards"
+  },
+  {
+   "term": "hazard",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "hiểm họa",
+   "en": "a process or event that may cause harm"
+  },
+  {
+   "term": "exposure",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "mức phơi bày (trước hiểm họa)",
+   "en": "the people and assets located in hazard-prone areas"
+  },
+  {
+   "term": "vulnerability",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "tính dễ bị tổn thương",
+   "en": "the conditions that make people or assets easily harmed"
+  },
+  {
+   "term": "risk assessment",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "đánh giá rủi ro",
+   "en": "the process of estimating how likely and how damaging an event is"
+  },
+  {
+   "term": "coping capacity",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "năng lực ứng phó",
+   "en": "the resources people can use to face a hazard"
+  },
+  {
+   "term": "livelihood",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "sinh kế",
+   "en": "the way people make a living"
+  },
+  {
+   "term": "poverty",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "nghèo đói",
+   "en": "the state of lacking enough income and resources to live well"
+  },
+  {
+   "term": "household",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "hộ gia đình",
+   "en": "all the people living together in one home, as a survey unit"
+  },
+  {
+   "term": "income",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "thu nhập",
+   "en": "the money a person or household receives"
+  },
+  {
+   "term": "socioeconomic",
+   "pos": "adj",
+   "deck": "drr",
+   "vi": "kinh tế - xã hội",
+   "en": "relating to both social and economic conditions"
+  },
+  {
+   "term": "questionnaire survey",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "khảo sát bằng bảng hỏi",
+   "en": "data collection using a fixed set of written questions"
+  },
+  {
+   "term": "respondent",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "người trả lời khảo sát",
+   "en": "a person who answers a survey"
+  },
+  {
+   "term": "stakeholder",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "bên liên quan",
+   "en": "a person or group affected by, or able to affect, a decision"
+  },
+  {
+   "term": "policymaker",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "nhà hoạch định chính sách",
+   "en": "a person who sets rules and plans for a government or organisation"
+  },
+  {
+   "term": "evacuation",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "sơ tán",
+   "en": "moving people away from a dangerous area"
+  },
+  {
+   "term": "preparedness",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "sự sẵn sàng ứng phó",
+   "en": "the state of being ready to respond to a disaster"
+  },
+  {
+   "term": "disaster response",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "ứng phó thiên tai",
+   "en": "the actions taken immediately during and after a disaster"
+  },
+  {
+   "term": "recovery",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "phục hồi sau thiên tai",
+   "en": "the process of restoring life and infrastructure after a disaster"
+  },
+  {
+   "term": "relief",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "cứu trợ",
+   "en": "emergency aid given to disaster victims"
+  },
+  {
+   "term": "casualty",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "thương vong",
+   "en": "a person killed or injured in a disaster"
+  },
+  {
+   "term": "displacement",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "sự di dời (dân cư)",
+   "en": "being forced to leave one's home"
+  },
+  {
+   "term": "land use",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "sử dụng đất",
+   "en": "how humans use an area of land"
+  },
+  {
+   "term": "land cover",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "lớp phủ mặt đất",
+   "en": "the physical material on the surface, such as forest or water"
+  },
+  {
+   "term": "land-use change",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "biến đổi sử dụng đất",
+   "en": "a shift in how land is used over time"
+  },
+  {
+   "term": "urbanization",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "đô thị hóa",
+   "en": "the growth of towns and cities over rural land"
+  },
+  {
+   "term": "infrastructure",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "cơ sở hạ tầng",
+   "en": "the basic physical systems such as roads, power and water"
+  },
+  {
+   "term": "crop yield",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "năng suất cây trồng",
+   "en": "the amount of crop produced per unit of land"
+  },
+  {
+   "term": "agricultural",
+   "pos": "adj",
+   "deck": "drr",
+   "vi": "thuộc nông nghiệp",
+   "en": "relating to farming and crop production"
+  },
+  {
+   "term": "capacity building",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "nâng cao năng lực",
+   "en": "strengthening the skills and systems of people and institutions"
+  },
+  {
+   "term": "geospatial",
+   "pos": "adj",
+   "deck": "geo",
+   "vi": "địa không gian",
+   "en": "relating to data that has a location on Earth"
+  },
+  {
+   "term": "remote sensing",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "viễn thám",
+   "en": "observing the Earth from satellites or aircraft"
+  },
+  {
+   "term": "satellite imagery",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "ảnh vệ tinh",
+   "en": "pictures of the Earth taken from satellites"
+  },
+  {
+   "term": "spatial resolution",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "độ phân giải không gian",
+   "en": "the ground size represented by one pixel or grid cell"
+  },
+  {
+   "term": "spatiotemporal",
+   "pos": "adj",
+   "deck": "geo",
+   "vi": "không - thời gian",
+   "en": "varying in both space and time"
+  },
+  {
+   "term": "grid cell",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "ô lưới",
+   "en": "one square unit of a raster dataset"
+  },
+  {
+   "term": "digital elevation model",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "mô hình số độ cao",
+   "en": "a raster dataset giving the ground height at each cell"
+  },
+  {
+   "term": "mapping",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "việc lập bản đồ",
+   "en": "the making of maps from data"
+  },
+  {
+   "term": "dataset",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "bộ dữ liệu",
+   "en": "an organised collection of related data"
+  },
+  {
+   "term": "calibration",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "hiệu chỉnh mô hình",
+   "en": "tuning model parameters so output matches observations"
+  },
+  {
+   "term": "calibrate",
+   "pos": "v",
+   "deck": "geo",
+   "vi": "hiệu chỉnh",
+   "en": "to adjust a model or instrument against known values"
+  },
+  {
+   "term": "validation",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "kiểm định (mô hình)",
+   "en": "testing a model against data not used to build it"
+  },
+  {
+   "term": "validate",
+   "pos": "v",
+   "deck": "geo",
+   "vi": "kiểm định, xác nhận",
+   "en": "to check that something is correct or works as claimed"
+  },
+  {
+   "term": "simulate",
+   "pos": "v",
+   "deck": "geo",
+   "vi": "mô phỏng",
+   "en": "to reproduce a real process with a model"
+  },
+  {
+   "term": "simulation",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "sự mô phỏng",
+   "en": "a model run that imitates a real system"
+  },
+  {
+   "term": "parameter",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "tham số",
+   "en": "a value in a model that is set or tuned"
+  },
+  {
+   "term": "threshold",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "ngưỡng",
+   "en": "the level at which something starts to happen or count"
+  },
+  {
+   "term": "logistic regression",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "hồi quy logistic",
+   "en": "a statistical model that predicts a yes/no outcome"
+  },
+  {
+   "term": "machine learning",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "học máy",
+   "en": "methods that learn patterns from data instead of fixed rules"
+  },
+  {
+   "term": "neural network",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "mạng nơ-ron",
+   "en": "a machine-learning model of connected layers of units"
+  },
+  {
+   "term": "accuracy",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "độ chính xác",
+   "en": "how close a result is to the true value"
+  },
+  {
+   "term": "uncertainty",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "độ bất định",
+   "en": "the range of doubt around an estimate"
+  },
+  {
+   "term": "bias",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "sai lệch hệ thống",
+   "en": "a systematic error that pushes results in one direction"
+  },
+  {
+   "term": "correlation",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "sự tương quan",
+   "en": "a statistical relationship between two variables"
+  },
+  {
+   "term": "nowcasting",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "dự báo cực ngắn hạn",
+   "en": "forecasting the next few hours from current observations"
+  },
+  {
+   "term": "forecast",
+   "pos": "v",
+   "deck": "geo",
+   "vi": "dự báo",
+   "en": "to predict a future condition from current data"
+  },
+  {
+   "term": "interpolation",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "nội suy",
+   "en": "estimating values between known measurement points"
+  },
+  {
+   "term": "model performance",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "hiệu năng mô hình",
+   "en": "how well a model reproduces observed values"
+  },
+  {
+   "term": "site selection",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "lựa chọn vị trí",
+   "en": "choosing the best location for a facility from criteria"
+  },
+  {
+   "term": "assess",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "đánh giá",
+   "en": "to judge the nature or level of something carefully"
+  },
+  {
+   "term": "quantify",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "định lượng",
+   "en": "to express something as a number or amount"
+  },
+  {
+   "term": "estimate",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "ước tính",
+   "en": "to work out an approximate value"
+  },
+  {
+   "term": "derive",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "suy ra, rút ra",
+   "en": "to obtain something from a source by reasoning or calculation"
+  },
+  {
+   "term": "investigate",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "khảo sát, nghiên cứu",
+   "en": "to examine something systematically to find facts"
+  },
+  {
+   "term": "examine",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "xem xét kỹ",
+   "en": "to look at something closely and in detail"
+  },
+  {
+   "term": "conduct",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "tiến hành (khảo sát, thí nghiệm)",
+   "en": "to organise and carry out an activity"
+  },
+  {
+   "term": "propose",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "đề xuất",
+   "en": "to put forward an idea or method for consideration"
+  },
+  {
+   "term": "implement",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "triển khai, thực thi",
+   "en": "to put a plan or method into action"
+  },
+  {
+   "term": "employ",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "sử dụng (phương pháp)",
+   "en": "to make use of a method or tool"
+  },
+  {
+   "term": "demonstrate",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "chứng minh, cho thấy rõ",
+   "en": "to show clearly that something is true"
+  },
+  {
+   "term": "indicate",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "cho thấy, chỉ ra",
+   "en": "to show or point to a fact"
+  },
+  {
+   "term": "reveal",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "hé lộ, làm lộ ra",
+   "en": "to make something previously unknown visible"
+  },
+  {
+   "term": "highlight",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "nhấn mạnh",
+   "en": "to draw attention to something important"
+  },
+  {
+   "term": "address",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "giải quyết (vấn đề)",
+   "en": "to deal with a problem or question"
+  },
+  {
+   "term": "account for",
+   "pos": "phr",
+   "deck": "academic",
+   "vi": "chiếm (tỉ lệ); giải thích cho",
+   "en": "to make up a share of a total, or to explain a fact"
+  },
+  {
+   "term": "attribute to",
+   "pos": "phr",
+   "deck": "academic",
+   "vi": "quy cho, cho là do",
+   "en": "to say that something is caused by something else"
+  },
+  {
+   "term": "contribute to",
+   "pos": "phr",
+   "deck": "academic",
+   "vi": "góp phần vào",
+   "en": "to help cause or add to a result"
+  },
+  {
+   "term": "incorporate",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "đưa vào, tích hợp vào",
+   "en": "to include something as part of a whole"
+  },
+  {
+   "term": "integrate",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "tích hợp",
+   "en": "to combine parts into one working whole"
+  },
+  {
+   "term": "outperform",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "vượt trội hơn",
+   "en": "to perform better than something else"
+  },
+  {
+   "term": "underestimate",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "đánh giá thấp hơn thực tế",
+   "en": "to give a value that is too low"
+  },
+  {
+   "term": "overestimate",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "đánh giá cao hơn thực tế",
+   "en": "to give a value that is too high"
+  },
+  {
+   "term": "significant",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "có ý nghĩa (thống kê); đáng kể",
+   "en": "large enough to be unlikely to be due to chance"
+  },
+  {
+   "term": "substantial",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "đáng kể, lớn",
+   "en": "large in size, value or importance"
+  },
+  {
+   "term": "comprehensive",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "toàn diện",
+   "en": "covering all or nearly all aspects"
+  },
+  {
+   "term": "robust",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "vững, ổn định trước nhiễu",
+   "en": "still working well under changed or difficult conditions"
+  },
+  {
+   "term": "feasible",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "khả thi",
+   "en": "possible to do in practice"
+  },
+  {
+   "term": "novel",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "mới, chưa từng có",
+   "en": "new and different from what existed before"
+  },
+  {
+   "term": "preliminary",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "sơ bộ",
+   "en": "coming before the full or final version"
+  },
+  {
+   "term": "respectively",
+   "pos": "adv",
+   "deck": "academic",
+   "vi": "lần lượt (theo thứ tự đã nêu)",
+   "en": "in the same order as the items just listed"
+  },
+  {
+   "term": "whereas",
+   "pos": "adv",
+   "deck": "academic",
+   "vi": "trong khi đó (đối lập)",
+   "en": "used to contrast two facts"
+  },
+  {
+   "term": "nevertheless",
+   "pos": "adv",
+   "deck": "academic",
+   "vi": "tuy nhiên, dù vậy",
+   "en": "in spite of what was just said"
+  },
+  {
+   "term": "furthermore",
+   "pos": "adv",
+   "deck": "academic",
+   "vi": "hơn nữa",
+   "en": "used to add another supporting point"
+  },
+  {
+   "term": "with respect to",
+   "pos": "phr",
+   "deck": "academic",
+   "vi": "đối với, xét theo",
+   "en": "concerning or in relation to"
+  },
+  {
+   "term": "in terms of",
+   "pos": "phr",
+   "deck": "academic",
+   "vi": "xét về mặt",
+   "en": "measured or described by a particular aspect"
+  },
+  {
+   "term": "state-of-the-art",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "tiên tiến nhất hiện nay",
+   "en": "using the most advanced methods available"
+  },
+  {
+   "term": "framework",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "khung (lý thuyết, phương pháp)",
+   "en": "a structure of ideas or steps that organises the work"
+  },
+  {
+   "term": "methodology",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "phương pháp luận",
+   "en": "the set of methods and the reasoning behind them"
+  },
+  {
+   "term": "findings",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "các phát hiện",
+   "en": "the results that a study has produced"
+  },
+  {
+   "term": "limitation",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "hạn chế (của nghiên cứu)",
+   "en": "a weakness or boundary of what the study can show"
+  },
+  {
+   "term": "implication",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "hàm ý, hệ quả",
+   "en": "a likely consequence or meaning of a result"
+  },
+  {
+   "term": "effectiveness",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "tính hiệu quả",
+   "en": "how well something achieves its intended result"
+  },
+  {
+   "term": "consideration",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "sự cân nhắc, xem xét",
+   "en": "careful thought about something before deciding"
+  },
+  {
+   "term": "aim to",
+   "pos": "phr",
+   "deck": "academic",
+   "vi": "nhằm mục đích",
+   "en": "to have something as one's purpose"
+  },
+  {
+   "term": "analyse",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "phân tích",
+   "en": "to examine something in detail, part by part"
+  },
+  {
+   "term": "apply",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "áp dụng",
+   "en": "to put a method or rule into practice"
+  },
+  {
+   "term": "argue",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "lập luận",
+   "en": "to give reasons for a position"
+  },
+  {
+   "term": "carry out",
+   "pos": "phr",
+   "deck": "academic",
+   "vi": "tiến hành",
+   "en": "to perform a task or study"
+  },
+  {
+   "term": "clarify",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "làm rõ",
+   "en": "to make something easier to understand"
+  },
+  {
+   "term": "compare",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "so sánh",
+   "en": "to look at similarities and differences"
+  },
+  {
+   "term": "compile",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "tổng hợp, biên soạn",
+   "en": "to gather material into one organised whole"
+  },
+  {
+   "term": "conclude",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "kết luận",
+   "en": "to state a final judgement from evidence"
+  },
+  {
+   "term": "confirm",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "xác nhận",
+   "en": "to show that something is true"
+  },
+  {
+   "term": "constrain",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "ràng buộc, hạn chế",
+   "en": "to limit what a value or system can do"
+  },
+  {
+   "term": "construct",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "xây dựng (mô hình, chỉ số)",
+   "en": "to build something from parts"
+  },
+  {
+   "term": "define",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "định nghĩa",
+   "en": "to state exactly what a term means"
+  },
+  {
+   "term": "depend on",
+   "pos": "phr",
+   "deck": "academic",
+   "vi": "phụ thuộc vào",
+   "en": "to be determined by something else"
+  },
+  {
+   "term": "develop",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "phát triển, xây dựng",
+   "en": "to create or improve something over time"
+  },
+  {
+   "term": "discuss",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "thảo luận, bàn về",
+   "en": "to examine a topic in writing or speech"
+  },
+  {
+   "term": "distinguish",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "phân biệt",
+   "en": "to tell one thing apart from another"
+  },
+  {
+   "term": "explore",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "khảo sát, tìm hiểu",
+   "en": "to investigate a topic that is not yet well known"
+  },
+  {
+   "term": "focus on",
+   "pos": "phr",
+   "deck": "academic",
+   "vi": "tập trung vào",
+   "en": "to give attention mainly to one thing"
+  },
+  {
+   "term": "generate",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "tạo ra, sinh ra",
+   "en": "to produce something"
+  },
+  {
+   "term": "identify",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "xác định, nhận diện",
+   "en": "to recognise and name something"
+  },
+  {
+   "term": "illustrate",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "minh hoạ",
+   "en": "to make a point clear with an example or figure"
+  },
+  {
+   "term": "imply",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "hàm ý",
+   "en": "to suggest something without stating it directly"
+  },
+  {
+   "term": "obtain",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "thu được",
+   "en": "to get a result or a dataset"
+  },
+  {
+   "term": "observe",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "quan sát",
+   "en": "to watch and record what happens"
+  },
+  {
+   "term": "outline",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "phác thảo, trình bày sơ lược",
+   "en": "to describe the main points briefly"
+  },
+  {
+   "term": "perform",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "thực hiện",
+   "en": "to carry out an action or analysis"
+  },
+  {
+   "term": "present",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "trình bày",
+   "en": "to show or explain something to others"
+  },
+  {
+   "term": "require",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "đòi hỏi, cần",
+   "en": "to need something as a condition"
+  },
+  {
+   "term": "suggest",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "gợi ý, cho thấy",
+   "en": "to put forward an idea, or to point to a conclusion"
+  },
+  {
+   "term": "summarize",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "tóm tắt",
+   "en": "to state the main points briefly"
+  },
+  {
+   "term": "utilize",
+   "pos": "v",
+   "deck": "academic",
+   "vi": "sử dụng, tận dụng",
+   "en": "to make practical use of something"
+  },
+  {
+   "term": "hence",
+   "pos": "adv",
+   "deck": "academic",
+   "vi": "do đó",
+   "en": "for this reason"
+  },
+  {
+   "term": "likewise",
+   "pos": "adv",
+   "deck": "academic",
+   "vi": "tương tự",
+   "en": "in the same way"
+  },
+  {
+   "term": "notably",
+   "pos": "adv",
+   "deck": "academic",
+   "vi": "đáng chú ý là",
+   "en": "in a way worth pointing out"
+  },
+  {
+   "term": "primarily",
+   "pos": "adv",
+   "deck": "academic",
+   "vi": "chủ yếu",
+   "en": "mainly, for the most part"
+  },
+  {
+   "term": "relatively",
+   "pos": "adv",
+   "deck": "academic",
+   "vi": "tương đối",
+   "en": "when compared with something else"
+  },
+  {
+   "term": "subsequently",
+   "pos": "adv",
+   "deck": "academic",
+   "vi": "sau đó",
+   "en": "at a later time"
+  },
+  {
+   "term": "thereby",
+   "pos": "adv",
+   "deck": "academic",
+   "vi": "nhờ đó, qua đó",
+   "en": "as a result of that action"
+  },
+  {
+   "term": "approximately",
+   "pos": "adv",
+   "deck": "academic",
+   "vi": "khoảng, xấp xỉ",
+   "en": "close to but not exactly"
+  },
+  {
+   "term": "considerable",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "đáng kể",
+   "en": "large enough to matter"
+  },
+  {
+   "term": "consistent",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "nhất quán, phù hợp",
+   "en": "in agreement, not contradicting"
+  },
+  {
+   "term": "crucial",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "then chốt",
+   "en": "extremely important for the outcome"
+  },
+  {
+   "term": "distinct",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "riêng biệt, rõ rệt",
+   "en": "clearly different or separate"
+  },
+  {
+   "term": "explicit",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "rõ ràng, tường minh",
+   "en": "stated openly and precisely"
+  },
+  {
+   "term": "inherent",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "vốn có",
+   "en": "existing as a natural part of something"
+  },
+  {
+   "term": "plausible",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "hợp lý, có thể tin được",
+   "en": "seeming reasonable or probable"
+  },
+  {
+   "term": "prominent",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "nổi bật",
+   "en": "standing out, important"
+  },
+  {
+   "term": "relevant",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "liên quan, thích đáng",
+   "en": "closely connected to the matter at hand"
+  },
+  {
+   "term": "subsequent",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "tiếp theo",
+   "en": "coming after in time or order"
+  },
+  {
+   "term": "underlying",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "nền tảng, cơ bản",
+   "en": "lying beneath and explaining what is seen"
+  },
+  {
+   "term": "criterion",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "tiêu chí",
+   "en": "a standard used to judge or decide"
+  },
+  {
+   "term": "hypothesis",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "giả thuyết",
+   "en": "a proposed explanation to be tested"
+  },
+  {
+   "term": "literature review",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "tổng quan tài liệu",
+   "en": "a survey of what has already been published"
+  },
+  {
+   "term": "objective",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "mục tiêu",
+   "en": "the aim a study sets out to achieve"
+  },
+  {
+   "term": "outcome",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "kết quả",
+   "en": "what results from a process"
+  },
+  {
+   "term": "rationale",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "cơ sở lý luận",
+   "en": "the reasoning behind a choice"
+  },
+  {
+   "term": "scope",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "phạm vi",
+   "en": "the extent of what a study covers"
+  },
+  {
+   "term": "constraint",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "ràng buộc",
+   "en": "a limit on what is possible"
+  },
+  {
+   "term": "discrepancy",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "sự sai lệch",
+   "en": "a difference where agreement was expected"
+  },
+  {
+   "term": "magnitude",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "độ lớn",
+   "en": "the size of a quantity or effect"
+  },
+  {
+   "term": "extent",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "mức độ, quy mô",
+   "en": "how far something reaches"
+  },
+  {
+   "term": "insight",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "hiểu biết sâu sắc",
+   "en": "a clear, useful understanding of something"
+  },
+  {
+   "term": "evidence",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "bằng chứng",
+   "en": "facts supporting a claim"
+  },
+  {
+   "term": "to date",
+   "pos": "phr",
+   "deck": "academic",
+   "vi": "cho đến nay",
+   "en": "up to the present time"
+  },
+  {
+   "term": "in contrast",
+   "pos": "phr",
+   "deck": "academic",
+   "vi": "ngược lại",
+   "en": "used to mark an opposite case"
+  },
+  {
+   "term": "as a result",
+   "pos": "phr",
+   "deck": "academic",
+   "vi": "kết quả là",
+   "en": "because of what was just stated"
+  },
+  {
+   "term": "on the other hand",
+   "pos": "phr",
+   "deck": "academic",
+   "vi": "mặt khác",
+   "en": "used to give the opposing view"
+  },
+  {
+   "term": "due to",
+   "pos": "phr",
+   "deck": "academic",
+   "vi": "do, vì",
+   "en": "caused by"
+  },
+  {
+   "term": "based on",
+   "pos": "phr",
+   "deck": "academic",
+   "vi": "dựa trên",
+   "en": "using something as a foundation"
+  },
+  {
+   "term": "according to",
+   "pos": "phr",
+   "deck": "academic",
+   "vi": "theo (nguồn nào đó)",
+   "en": "as stated by a source"
+  },
+  {
+   "term": "in addition",
+   "pos": "phr",
+   "deck": "academic",
+   "vi": "ngoài ra",
+   "en": "as an extra point"
+  },
+  {
+   "term": "a wide range of",
+   "pos": "phr",
+   "deck": "academic",
+   "vi": "một loạt, nhiều loại",
+   "en": "a large variety of"
+  },
+  {
+   "term": "previous study",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "nghiên cứu trước đây",
+   "en": "research published before the present one"
+  },
+  {
+   "term": "further research",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "nghiên cứu tiếp theo",
+   "en": "work still needed on the topic"
+  },
+  {
+   "term": "research gap",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "khoảng trống nghiên cứu",
+   "en": "a question the literature has not answered"
+  },
+  {
+   "term": "research question",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "câu hỏi nghiên cứu",
+   "en": "the question a study sets out to answer"
+  },
+  {
+   "term": "study area",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "khu vực nghiên cứu",
+   "en": "the place a study investigates"
+  },
+  {
+   "term": "case study",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "nghiên cứu điển hình",
+   "en": "a detailed examination of one example"
+  },
+  {
+   "term": "survey data",
+   "pos": "n",
+   "deck": "academic",
+   "vi": "dữ liệu khảo sát",
+   "en": "information collected by questioning people"
+  },
+  {
+   "term": "empirical",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "thực nghiệm",
+   "en": "based on observed data rather than theory"
+  },
+  {
+   "term": "qualitative",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "mang tính định tính",
+   "en": "describing qualities rather than numbers"
+  },
+  {
+   "term": "quantitative",
+   "pos": "adj",
+   "deck": "academic",
+   "vi": "mang tính định lượng",
+   "en": "expressed in measurable numbers"
+  },
+  {
+   "term": "climate variability",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "dao động khí hậu",
+   "en": "natural swings of climate around its average"
+  },
+  {
+   "term": "climate projection",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "dự tính khí hậu",
+   "en": "a model estimate of future climate under a scenario"
+  },
+  {
+   "term": "climate scenario",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "kịch bản khí hậu",
+   "en": "an assumed future pathway of emissions and climate"
+  },
+  {
+   "term": "climate impact",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "tác động khí hậu",
+   "en": "the effect of climate change on a system or sector"
+  },
+  {
+   "term": "climate extremes",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "cực đoan khí hậu",
+   "en": "rare, severe climate events such as heat waves"
+  },
+  {
+   "term": "climate adaptation",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "thích ứng khí hậu",
+   "en": "adjusting systems to reduce harm from climate change"
+  },
+  {
+   "term": "climate mitigation",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "giảm nhẹ biến đổi khí hậu",
+   "en": "cutting greenhouse gas emissions"
+  },
+  {
+   "term": "climate policy",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "chính sách khí hậu",
+   "en": "government rules addressing climate change"
+  },
+  {
+   "term": "climate data",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "dữ liệu khí hậu",
+   "en": "records of temperature, rainfall and related variables"
+  },
+  {
+   "term": "general circulation model",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "mô hình hoàn lưu chung (GCM)",
+   "en": "a global model of atmosphere and ocean physics"
+  },
+  {
+   "term": "regional climate model",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "mô hình khí hậu khu vực",
+   "en": "a fine-scale climate model nested in a global one"
+  },
+  {
+   "term": "representative concentration pathway",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "kịch bản nồng độ khí nhà kính (RCP)",
+   "en": "a standard scenario of future greenhouse gas concentrations"
+  },
+  {
+   "term": "model intercomparison",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "so sánh giữa các mô hình",
+   "en": "running many models on the same setup to compare them"
+  },
+  {
+   "term": "reanalysis",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "dữ liệu tái phân tích",
+   "en": "a consistent past weather record built by blending observations with a model"
+  },
+  {
+   "term": "near future",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "tương lai gần",
+   "en": "roughly the next two or three decades"
+  },
+  {
+   "term": "far future",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "tương lai xa",
+   "en": "the late part of this century"
+  },
+  {
+   "term": "future period",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "thời kỳ tương lai",
+   "en": "the years a projection describes"
+  },
+  {
+   "term": "mean temperature",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "nhiệt độ trung bình",
+   "en": "the average temperature over a period"
+  },
+  {
+   "term": "surface temperature",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "nhiệt độ bề mặt",
+   "en": "the temperature measured near the ground or sea surface"
+  },
+  {
+   "term": "sea level rise",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "nước biển dâng",
+   "en": "the long-term increase of ocean surface height"
+  },
+  {
+   "term": "carbon emission",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "phát thải các-bon",
+   "en": "the release of carbon dioxide into the atmosphere"
+  },
+  {
+   "term": "mitigation measure",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "biện pháp giảm nhẹ",
+   "en": "an action that lowers emissions or damage"
+  },
+  {
+   "term": "adaptation strategy",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "chiến lược thích ứng",
+   "en": "a plan for coping with climate change"
+  },
+  {
+   "term": "anthropogenic",
+   "pos": "adj",
+   "deck": "climate",
+   "vi": "do con người gây ra",
+   "en": "caused by human activity"
+  },
+  {
+   "term": "atmospheric",
+   "pos": "adj",
+   "deck": "climate",
+   "vi": "thuộc khí quyển",
+   "en": "relating to the atmosphere"
+  },
+  {
+   "term": "climatic",
+   "pos": "adj",
+   "deck": "climate",
+   "vi": "thuộc khí hậu",
+   "en": "relating to climate"
+  },
+  {
+   "term": "seasonal",
+   "pos": "adj",
+   "deck": "climate",
+   "vi": "theo mùa",
+   "en": "varying with the seasons of the year"
+  },
+  {
+   "term": "decadal",
+   "pos": "adj",
+   "deck": "climate",
+   "vi": "theo thập kỷ",
+   "en": "happening or measured over ten-year spans"
+  },
+  {
+   "term": "interannual",
+   "pos": "adj",
+   "deck": "climate",
+   "vi": "giữa các năm",
+   "en": "varying from one year to the next"
+  },
+  {
+   "term": "global mean",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "trung bình toàn cầu",
+   "en": "the average over the whole planet"
+  },
+  {
+   "term": "projected change",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "mức thay đổi dự tính",
+   "en": "the difference a model predicts between future and present"
+  },
+  {
+   "term": "climate variability and change",
+   "pos": "phr",
+   "deck": "climate",
+   "vi": "dao động và biến đổi khí hậu",
+   "en": "both natural swings and long-term shifts of climate"
+  },
+  {
+   "term": "emission scenario",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "kịch bản phát thải",
+   "en": "an assumed future path of greenhouse gas releases"
+  },
+  {
+   "term": "warming trend",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "xu thế nóng lên",
+   "en": "a steady rise of temperature over time"
+  },
+  {
+   "term": "uncertainty range",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "khoảng bất định",
+   "en": "the spread of plausible values around an estimate"
+  },
+  {
+   "term": "temperature",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "nhiệt độ",
+   "en": "how hot or cold the air, water or surface is"
+  },
+  {
+   "term": "extreme weather",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "thời tiết cực đoan",
+   "en": "unusually severe weather such as storms or heat waves"
+  },
+  {
+   "term": "weather forecasting",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "dự báo thời tiết",
+   "en": "predicting weather over the coming hours and days"
+  },
+  {
+   "term": "global change",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "biến đổi toàn cầu",
+   "en": "large-scale change in the earth system caused by humans"
+  },
+  {
+   "term": "future scenario",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "kịch bản tương lai",
+   "en": "an assumed set of future conditions used for planning"
+  },
+  {
+   "term": "climate change adaptation",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "thích ứng với biến đổi khí hậu",
+   "en": "adjusting practices to live with a changed climate"
+  },
+  {
+   "term": "climate change impact",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "tác động của biến đổi khí hậu",
+   "en": "the harm or benefit climate change brings to a system"
+  },
+  {
+   "term": "climate system",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "hệ thống khí hậu",
+   "en": "the coupled atmosphere, ocean, ice and land"
+  },
+  {
+   "term": "atmospheric circulation",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "hoàn lưu khí quyển",
+   "en": "the large-scale movement of air around the planet"
+  },
+  {
+   "term": "concentration pathway",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "lộ trình nồng độ",
+   "en": "an assumed trajectory of greenhouse gas concentrations"
+  },
+  {
+   "term": "future change",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "thay đổi trong tương lai",
+   "en": "how a variable is expected to differ later"
+  },
+  {
+   "term": "climate condition",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "điều kiện khí hậu",
+   "en": "the state of climate in a place and period"
+  },
+  {
+   "term": "climate variable",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "biến khí hậu",
+   "en": "a measurable quantity such as rainfall or temperature"
+  },
+  {
+   "term": "warming climate",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "khí hậu đang ấm lên",
+   "en": "a climate whose average temperature is rising"
+  },
+  {
+   "term": "climate change scenario",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "kịch bản biến đổi khí hậu",
+   "en": "an assumed future used to test climate impacts"
+  },
+  {
+   "term": "carbon",
+   "pos": "n",
+   "deck": "climate",
+   "vi": "các-bon",
+   "en": "the element whose compounds drive greenhouse warming"
+  },
+  {
+   "term": "disaster risk management",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "quản lý rủi ro thiên tai",
+   "en": "organising actions to reduce and handle disaster risk"
+  },
+  {
+   "term": "risk reduction",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "giảm nhẹ rủi ro",
+   "en": "lowering the chance or severity of harm"
+  },
+  {
+   "term": "risk perception",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "nhận thức rủi ro",
+   "en": "how people judge the danger they face"
+  },
+  {
+   "term": "disaster preparedness",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "sẵn sàng ứng phó thiên tai",
+   "en": "planning and drills done before a disaster strikes"
+  },
+  {
+   "term": "disaster prevention",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "phòng ngừa thiên tai",
+   "en": "stopping a hazard from becoming a disaster"
+  },
+  {
+   "term": "disaster management",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "quản lý thiên tai",
+   "en": "coordinating response and recovery around an event"
+  },
+  {
+   "term": "disaster resilience",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "khả năng chống chịu thiên tai",
+   "en": "the ability to absorb a shock and recover quickly"
+  },
+  {
+   "term": "emergency response",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "ứng phó khẩn cấp",
+   "en": "immediate action taken while a disaster unfolds"
+  },
+  {
+   "term": "early warning",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "cảnh báo sớm",
+   "en": "information issued in time for people to act"
+  },
+  {
+   "term": "local knowledge",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "tri thức bản địa",
+   "en": "understanding held by the community from experience"
+  },
+  {
+   "term": "governance",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "quản trị",
+   "en": "the way decisions and rules are made and enforced"
+  },
+  {
+   "term": "decision maker",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "người ra quyết định",
+   "en": "a person with authority to choose a course of action"
+  },
+  {
+   "term": "decision making",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "việc ra quyết định",
+   "en": "the process of choosing among options"
+  },
+  {
+   "term": "decision support",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "hỗ trợ ra quyết định",
+   "en": "tools and data that help people choose well"
+  },
+  {
+   "term": "poverty reduction",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "giảm nghèo",
+   "en": "policies that lift people out of poverty"
+  },
+  {
+   "term": "poor household",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "hộ nghèo",
+   "en": "a family living below the poverty line"
+  },
+  {
+   "term": "low-income",
+   "pos": "adj",
+   "deck": "drr",
+   "vi": "thu nhập thấp",
+   "en": "earning little money"
+  },
+  {
+   "term": "household survey",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "khảo sát hộ gia đình",
+   "en": "collecting data by questioning families"
+  },
+  {
+   "term": "interview survey",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "khảo sát phỏng vấn",
+   "en": "gathering data by talking to respondents"
+  },
+  {
+   "term": "food security",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "an ninh lương thực",
+   "en": "reliable access to enough safe, nutritious food"
+  },
+  {
+   "term": "well-being",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "phúc lợi, chất lượng sống",
+   "en": "a person's overall health, comfort and satisfaction"
+  },
+  {
+   "term": "inequality",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "bất bình đẳng",
+   "en": "unequal distribution of income or opportunity"
+  },
+  {
+   "term": "rural area",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "khu vực nông thôn",
+   "en": "countryside where farming dominates"
+  },
+  {
+   "term": "urban area",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "khu vực đô thị",
+   "en": "a town or city with dense population"
+  },
+  {
+   "term": "informal settlement",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "khu dân cư tự phát",
+   "en": "housing built without legal planning permission"
+  },
+  {
+   "term": "migration",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "di cư",
+   "en": "people moving from one place to live in another"
+  },
+  {
+   "term": "resettlement",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "tái định cư",
+   "en": "moving a community to a new location"
+  },
+  {
+   "term": "agricultural production",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "sản xuất nông nghiệp",
+   "en": "the output of crops and livestock"
+  },
+  {
+   "term": "rice production",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "sản lượng lúa gạo",
+   "en": "the growing and output of rice"
+  },
+  {
+   "term": "smallholder",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "nông hộ nhỏ",
+   "en": "a farmer working a very small plot of land"
+  },
+  {
+   "term": "farmer",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "nông dân",
+   "en": "a person who grows crops or raises animals"
+  },
+  {
+   "term": "economic growth",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "tăng trưởng kinh tế",
+   "en": "an increase in a country's output over time"
+  },
+  {
+   "term": "economic development",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "phát triển kinh tế",
+   "en": "long-term improvement in living standards and structure"
+  },
+  {
+   "term": "developing country",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "nước đang phát triển",
+   "en": "a country with lower income and industrial capacity"
+  },
+  {
+   "term": "developed country",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "nước phát triển",
+   "en": "a rich, industrialised country"
+  },
+  {
+   "term": "gross domestic product",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "tổng sản phẩm quốc nội (GDP)",
+   "en": "the total value of goods and services a country produces"
+  },
+  {
+   "term": "sustainable development goal",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "mục tiêu phát triển bền vững (SDG)",
+   "en": "one of the UN targets for 2030"
+  },
+  {
+   "term": "Sendai Framework",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "Khung Sendai (về giảm nhẹ rủi ro thiên tai)",
+   "en": "the UN 2015-2030 agreement on disaster risk reduction"
+  },
+  {
+   "term": "awareness",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "nhận thức",
+   "en": "knowing that a risk or issue exists"
+  },
+  {
+   "term": "education",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "giáo dục",
+   "en": "teaching that builds knowledge and skills"
+  },
+  {
+   "term": "training",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "tập huấn",
+   "en": "practical instruction in a specific skill"
+  },
+  {
+   "term": "insurance",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "bảo hiểm",
+   "en": "paying a premium to be compensated for losses"
+  },
+  {
+   "term": "compensation",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "bồi thường",
+   "en": "money paid to make up for a loss"
+  },
+  {
+   "term": "relief effort",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "hoạt động cứu trợ",
+   "en": "aid delivered right after a disaster"
+  },
+  {
+   "term": "build back better",
+   "pos": "phr",
+   "deck": "drr",
+   "vi": "tái thiết tốt hơn trước",
+   "en": "rebuilding after a disaster so the result is safer than before"
+  },
+  {
+   "term": "resilient",
+   "pos": "adj",
+   "deck": "drr",
+   "vi": "có khả năng chống chịu",
+   "en": "able to recover quickly from a shock"
+  },
+  {
+   "term": "exposed",
+   "pos": "adj",
+   "deck": "drr",
+   "vi": "bị phơi nhiễm (trước hiểm hoạ)",
+   "en": "located where a hazard can reach it"
+  },
+  {
+   "term": "community resilience",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "sức chống chịu cộng đồng",
+   "en": "a community's capacity to withstand and recover"
+  },
+  {
+   "term": "urban governance",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "quản trị đô thị",
+   "en": "how a city is planned, run and held accountable"
+  },
+  {
+   "term": "public health",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "y tế công cộng",
+   "en": "protecting the health of a whole population"
+  },
+  {
+   "term": "income level",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "mức thu nhập",
+   "en": "how much money a household or country earns"
+  },
+  {
+   "term": "asset",
+   "pos": "n",
+   "deck": "drr",
+   "vi": "tài sản",
+   "en": "something of value owned by a household or firm"
+  },
+  {
+   "term": "flood event",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "trận lũ",
+   "en": "a single occurrence of flooding at a place and time"
+  },
+  {
+   "term": "flood frequency",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "tần suất lũ",
+   "en": "how often floods of a given size occur"
+  },
+  {
+   "term": "flood peak",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "đỉnh lũ",
+   "en": "the maximum water level or discharge in a flood"
+  },
+  {
+   "term": "flood loss",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "tổn thất do lũ",
+   "en": "the value of what is destroyed or lost in a flood"
+  },
+  {
+   "term": "flood-prone",
+   "pos": "adj",
+   "deck": "flood",
+   "vi": "dễ bị ngập",
+   "en": "likely to flood repeatedly"
+  },
+  {
+   "term": "flood protection",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "phòng chống lũ",
+   "en": "works and rules that keep floodwater away from people"
+  },
+  {
+   "term": "flood vulnerability",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "tính dễ tổn thương trước lũ",
+   "en": "how easily people or assets are harmed by flooding"
+  },
+  {
+   "term": "flash flood",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "lũ quét",
+   "en": "a sudden violent flood after intense rain"
+  },
+  {
+   "term": "river flood",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "lũ sông",
+   "en": "flooding caused by a river overtopping its banks"
+  },
+  {
+   "term": "urban flooding",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "ngập lụt đô thị",
+   "en": "flooding in cities when drains cannot take the rain"
+  },
+  {
+   "term": "coastal flooding",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "ngập lụt ven biển",
+   "en": "flooding of the shore by sea water"
+  },
+  {
+   "term": "inundation area",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "diện tích ngập",
+   "en": "the area covered by floodwater"
+  },
+  {
+   "term": "inundation map",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "bản đồ ngập lụt",
+   "en": "a map showing which areas are under water"
+  },
+  {
+   "term": "damage assessment",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "đánh giá thiệt hại",
+   "en": "surveying and valuing what a disaster destroyed"
+  },
+  {
+   "term": "damage estimation",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "ước tính thiệt hại",
+   "en": "calculating expected losses before or after an event"
+  },
+  {
+   "term": "direct damage",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "thiệt hại trực tiếp",
+   "en": "harm caused by the water itself touching property"
+  },
+  {
+   "term": "loss estimation",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "ước tính tổn thất",
+   "en": "predicting the economic loss from a hazard"
+  },
+  {
+   "term": "structural measure",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "biện pháp công trình",
+   "en": "physical works such as dams and levees"
+  },
+  {
+   "term": "non-structural measure",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "biện pháp phi công trình",
+   "en": "rules, warnings and planning rather than construction"
+  },
+  {
+   "term": "debris flow",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "dòng bùn đá",
+   "en": "a fast mixture of mud, rock and water rushing downslope"
+  },
+  {
+   "term": "erosion",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "xói mòn",
+   "en": "the wearing away of soil or riverbank by water"
+  },
+  {
+   "term": "susceptibility map",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "bản đồ nguy cơ",
+   "en": "a map showing where a hazard is likely to occur"
+  },
+  {
+   "term": "hazard map",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "bản đồ hiểm hoạ",
+   "en": "a map of areas exposed to a given hazard"
+  },
+  {
+   "term": "warning system",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "hệ thống cảnh báo",
+   "en": "equipment and procedures that alert people before a hazard"
+  },
+  {
+   "term": "lead time",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "thời gian báo trước",
+   "en": "how long before impact a warning is issued"
+  },
+  {
+   "term": "evacuation route",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "tuyến sơ tán",
+   "en": "the planned path people take to reach safety"
+  },
+  {
+   "term": "casualties",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "thương vong",
+   "en": "the people killed or injured by a disaster"
+  },
+  {
+   "term": "fatality",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "trường hợp tử vong",
+   "en": "a death caused by a disaster"
+  },
+  {
+   "term": "affected area",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "khu vực bị ảnh hưởng",
+   "en": "the land where a disaster caused harm"
+  },
+  {
+   "term": "affected population",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "dân số bị ảnh hưởng",
+   "en": "the number of people harmed by an event"
+  },
+  {
+   "term": "severe flood",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "lũ nghiêm trọng",
+   "en": "a flood large enough to cause major damage"
+  },
+  {
+   "term": "extreme event",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "sự kiện cực đoan",
+   "en": "a rare event of unusual magnitude"
+  },
+  {
+   "term": "reconstruction",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "tái thiết",
+   "en": "rebuilding after a disaster"
+  },
+  {
+   "term": "agricultural damage",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "thiệt hại nông nghiệp",
+   "en": "harm to farmland, crops and livestock"
+  },
+  {
+   "term": "crop damage",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "thiệt hại mùa màng",
+   "en": "loss of crops caused by a hazard"
+  },
+  {
+   "term": "flood risk management",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "quản lý rủi ro lũ",
+   "en": "the whole set of actions that reduce flood risk"
+  },
+  {
+   "term": "storm",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "bão, giông",
+   "en": "violent weather with strong wind and heavy rain"
+  },
+  {
+   "term": "tropical cyclone",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "xoáy thuận nhiệt đới",
+   "en": "a rotating storm system formed over warm ocean"
+  },
+  {
+   "term": "typhoon",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "bão nhiệt đới (Tây Bắc Thái Bình Dương)",
+   "en": "a tropical cyclone in the northwest Pacific"
+  },
+  {
+   "term": "surge",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "nước dâng",
+   "en": "a sudden rise of water level"
+  },
+  {
+   "term": "inundate",
+   "pos": "v",
+   "deck": "flood",
+   "vi": "làm ngập",
+   "en": "to cover an area with water"
+  },
+  {
+   "term": "natural hazard",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "hiểm hoạ tự nhiên",
+   "en": "a natural process that can harm people"
+  },
+  {
+   "term": "natural disaster",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "thiên tai",
+   "en": "a natural hazard that causes serious damage"
+  },
+  {
+   "term": "disaster event",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "sự kiện thiên tai",
+   "en": "one identified occurrence of a disaster"
+  },
+  {
+   "term": "flood control measure",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "biện pháp kiểm soát lũ",
+   "en": "an action taken to limit flooding"
+  },
+  {
+   "term": "flood forecasting",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "dự báo lũ",
+   "en": "predicting flood levels before they happen"
+  },
+  {
+   "term": "flood simulation",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "mô phỏng lũ",
+   "en": "computing how a flood would spread"
+  },
+  {
+   "term": "damage cost",
+   "pos": "n",
+   "deck": "flood",
+   "vi": "chi phí thiệt hại",
+   "en": "the money value of the harm done"
+  },
+  {
+   "term": "geographic information system",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "hệ thống thông tin địa lý (GIS)",
+   "en": "software for storing, mapping and analysing spatial data"
+  },
+  {
+   "term": "remote sensing data",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "dữ liệu viễn thám",
+   "en": "measurements taken from satellites or aircraft"
+  },
+  {
+   "term": "spatial data",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "dữ liệu không gian",
+   "en": "data that carries a location"
+  },
+  {
+   "term": "spatial analysis",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "phân tích không gian",
+   "en": "studying patterns that depend on location"
+  },
+  {
+   "term": "spatial distribution",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "phân bố không gian",
+   "en": "how something is spread across an area"
+  },
+  {
+   "term": "spatial pattern",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "quy luật phân bố theo không gian",
+   "en": "a regular arrangement of values across space"
+  },
+  {
+   "term": "temporal resolution",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "độ phân giải thời gian",
+   "en": "how often the data is recorded"
+  },
+  {
+   "term": "land surface",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "bề mặt đất",
+   "en": "the top layer of the ground where land meets air"
+  },
+  {
+   "term": "elevation data",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "dữ liệu độ cao",
+   "en": "measurements of ground height above sea level"
+  },
+  {
+   "term": "terrain",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "địa hình",
+   "en": "the shape and features of a piece of land"
+  },
+  {
+   "term": "slope",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "độ dốc",
+   "en": "how steeply the ground rises or falls"
+  },
+  {
+   "term": "topography",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "địa hình học",
+   "en": "the arrangement of natural and artificial features of an area"
+  },
+  {
+   "term": "raster",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "dữ liệu dạng lưới ô (raster)",
+   "en": "spatial data stored as a grid of cells"
+  },
+  {
+   "term": "resolution",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "độ phân giải",
+   "en": "the smallest detail a dataset can show"
+  },
+  {
+   "term": "geospatial data",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "dữ liệu địa không gian",
+   "en": "any data tied to a position on earth"
+  },
+  {
+   "term": "data integration",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "tích hợp dữ liệu",
+   "en": "combining datasets from different sources into one"
+  },
+  {
+   "term": "database",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "cơ sở dữ liệu",
+   "en": "an organised store of data that can be queried"
+  },
+  {
+   "term": "data source",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "nguồn dữ liệu",
+   "en": "where a dataset comes from"
+  },
+  {
+   "term": "input data",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "dữ liệu đầu vào",
+   "en": "the data fed into a model"
+  },
+  {
+   "term": "output",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "đầu ra, kết quả",
+   "en": "what a model or process produces"
+  },
+  {
+   "term": "model output",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "kết quả mô hình",
+   "en": "the values a model computes"
+  },
+  {
+   "term": "time series",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "chuỗi thời gian",
+   "en": "a sequence of values recorded at successive times"
+  },
+  {
+   "term": "regression model",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "mô hình hồi quy",
+   "en": "a model fitting a response to explanatory variables"
+  },
+  {
+   "term": "regression analysis",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "phân tích hồi quy",
+   "en": "the statistical study of such a relationship"
+  },
+  {
+   "term": "statistical model",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "mô hình thống kê",
+   "en": "a model built from data patterns rather than physics"
+  },
+  {
+   "term": "deep learning",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "học sâu",
+   "en": "machine learning with many-layered neural networks"
+  },
+  {
+   "term": "training data",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "dữ liệu huấn luyện",
+   "en": "the examples used to fit a learning model"
+  },
+  {
+   "term": "classification",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "phân loại",
+   "en": "sorting items or pixels into defined classes"
+  },
+  {
+   "term": "cluster",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "cụm",
+   "en": "a group of points that are similar or close together"
+  },
+  {
+   "term": "algorithm",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "thuật toán",
+   "en": "a defined sequence of steps for solving a problem"
+  },
+  {
+   "term": "sensitivity analysis",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "phân tích độ nhạy",
+   "en": "testing how much results change when inputs change"
+  },
+  {
+   "term": "root mean square error",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "sai số quân phương (RMSE)",
+   "en": "a common measure of average prediction error"
+  },
+  {
+   "term": "error",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "sai số",
+   "en": "the difference between a computed and a true value"
+  },
+  {
+   "term": "bias correction method",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "phương pháp hiệu chỉnh sai lệch",
+   "en": "a technique that removes systematic error from model output"
+  },
+  {
+   "term": "estimation model",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "mô hình ước tính",
+   "en": "a model built to estimate an unmeasured quantity"
+  },
+  {
+   "term": "distributed model",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "mô hình phân bố",
+   "en": "a model that computes separately for each grid cell"
+  },
+  {
+   "term": "model structure",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "cấu trúc mô hình",
+   "en": "how a model's components are arranged"
+  },
+  {
+   "term": "model input",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "đầu vào mô hình",
+   "en": "the data or parameters a model needs to run"
+  },
+  {
+   "term": "initial condition",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "điều kiện ban đầu",
+   "en": "the state of a system when a simulation starts"
+  },
+  {
+   "term": "grid resolution",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "độ phân giải lưới",
+   "en": "the size of each cell in a model grid"
+  },
+  {
+   "term": "downscale",
+   "pos": "v",
+   "deck": "geo",
+   "vi": "chi tiết hoá (hạ quy mô)",
+   "en": "to turn coarse model output into finer local detail"
+  },
+  {
+   "term": "extrapolate",
+   "pos": "v",
+   "deck": "geo",
+   "vi": "ngoại suy",
+   "en": "to extend an estimate beyond the observed range"
+  },
+  {
+   "term": "aggregate",
+   "pos": "v",
+   "deck": "geo",
+   "vi": "gộp, tổng hợp",
+   "en": "to combine detailed values into a coarser total"
+  },
+  {
+   "term": "overlay",
+   "pos": "v",
+   "deck": "geo",
+   "vi": "chồng lớp",
+   "en": "to place map layers on top of each other for analysis"
+  },
+  {
+   "term": "flow accumulation",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "tích luỹ dòng chảy",
+   "en": "a GIS grid counting how many cells drain into each cell"
+  },
+  {
+   "term": "susceptibility mapping",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "lập bản đồ nguy cơ",
+   "en": "producing maps of where a hazard is likely"
+  },
+  {
+   "term": "accuracy assessment",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "đánh giá độ chính xác",
+   "en": "checking results against reference data"
+  },
+  {
+   "term": "indicator",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "chỉ số, chỉ báo",
+   "en": "a measurable sign of a condition or trend"
+  },
+  {
+   "term": "metric",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "thước đo",
+   "en": "a defined quantity used to judge performance"
+  },
+  {
+   "term": "variable",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "biến",
+   "en": "a quantity that can take different values"
+  },
+  {
+   "term": "input parameter",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "tham số đầu vào",
+   "en": "a value set before a model is run"
+  },
+  {
+   "term": "uncertainty analysis",
+   "pos": "n",
+   "deck": "geo",
+   "vi": "phân tích bất định",
+   "en": "quantifying how unsure a result is"
+  },
+  {
+   "term": "aquifer",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "tầng ngậm nước",
+   "en": "underground rock layer that holds groundwater"
+  },
+  {
+   "term": "baseflow",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "dòng chảy nền",
+   "en": "the part of streamflow fed by groundwater between rains"
+  },
+  {
+   "term": "hydraulic model",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "mô hình thuỷ lực",
+   "en": "model that computes water depth and velocity in a channel"
+  },
+  {
+   "term": "hydrology",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "thuỷ văn học",
+   "en": "the science of water movement on and under the land"
+  },
+  {
+   "term": "water demand",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "nhu cầu nước",
+   "en": "the amount of water users need in a period"
+  },
+  {
+   "term": "water supply",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "nguồn cấp nước",
+   "en": "the water made available to households, farms or industry"
+  },
+  {
+   "term": "water withdrawal",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "lượng nước khai thác",
+   "en": "water taken from a river or aquifer for human use"
+  },
+  {
+   "term": "water scarcity",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "khan hiếm nước",
+   "en": "a shortage of water relative to demand"
+  },
+  {
+   "term": "water use",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "mức sử dụng nước",
+   "en": "the volume of water consumed by an activity"
+  },
+  {
+   "term": "drinking water",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "nước sinh hoạt, nước uống",
+   "en": "water that is safe for people to drink"
+  },
+  {
+   "term": "surface water",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "nước mặt",
+   "en": "water in rivers, lakes and reservoirs, not underground"
+  },
+  {
+   "term": "soil moisture",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "độ ẩm đất",
+   "en": "the water held in the soil layer"
+  },
+  {
+   "term": "snowmelt",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "nước tan từ tuyết",
+   "en": "water released when snow melts, often causing spring floods"
+  },
+  {
+   "term": "rainfall intensity",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "cường độ mưa",
+   "en": "how much rain falls per unit of time"
+  },
+  {
+   "term": "water cycle",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "vòng tuần hoàn nước",
+   "en": "the circulation of water through evaporation, rain and runoff"
+  },
+  {
+   "term": "irrigation",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "tưới tiêu",
+   "en": "supplying water to crops artificially"
+  },
+  {
+   "term": "dry season",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "mùa khô",
+   "en": "the months of the year with little rainfall"
+  },
+  {
+   "term": "wet season",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "mùa mưa",
+   "en": "the months of the year with heavy rainfall"
+  },
+  {
+   "term": "peak flow",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "lưu lượng đỉnh",
+   "en": "the highest discharge reached during a flood"
+  },
+  {
+   "term": "low flow",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "dòng chảy kiệt",
+   "en": "the smallest discharge in a river, typical of dry periods"
+  },
+  {
+   "term": "water level",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "mực nước",
+   "en": "the height of the water surface at a point"
+  },
+  {
+   "term": "sub-basin",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "tiểu lưu vực",
+   "en": "a smaller drainage unit inside a river basin"
+  },
+  {
+   "term": "river network",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "mạng lưới sông",
+   "en": "the connected pattern of channels in a basin"
+  },
+  {
+   "term": "recharge",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "bổ cập nước ngầm",
+   "en": "water soaking down to refill an aquifer"
+  },
+  {
+   "term": "water footprint",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "dấu chân nước",
+   "en": "the total water used to produce a good or service"
+  },
+  {
+   "term": "blue water",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "nước xanh lam (nước mặt và nước ngầm)",
+   "en": "water in rivers, lakes and aquifers"
+  },
+  {
+   "term": "green water",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "nước xanh lục (nước mưa trong đất)",
+   "en": "rainwater stored in soil and used by plants"
+  },
+  {
+   "term": "virtual water",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "nước ảo",
+   "en": "the water embedded in a traded product"
+  },
+  {
+   "term": "dam",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "đập",
+   "en": "a barrier built across a river to store or divert water"
+  },
+  {
+   "term": "drainage",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "sự thoát nước",
+   "en": "the removal of excess water from land or a channel"
+  },
+  {
+   "term": "water consumption",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "lượng nước tiêu thụ",
+   "en": "water that is used up and not returned to the source"
+  },
+  {
+   "term": "water flow",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "dòng chảy",
+   "en": "the movement of water through a channel or system"
+  },
+  {
+   "term": "freshwater",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "nước ngọt",
+   "en": "water with very low salt content"
+  },
+  {
+   "term": "water storage",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "trữ lượng nước",
+   "en": "water held in reservoirs, soil or aquifers"
+  },
+  {
+   "term": "water shortage",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "thiếu nước",
+   "en": "a situation where supply cannot meet demand"
+  },
+  {
+   "term": "arid",
+   "pos": "adj",
+   "deck": "hydro",
+   "vi": "khô hạn",
+   "en": "receiving very little rain"
+  },
+  {
+   "term": "monsoon",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "gió mùa",
+   "en": "a seasonal wind bringing heavy rain to South and East Asia"
+  },
+  {
+   "term": "water infrastructure",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "hạ tầng cấp thoát nước",
+   "en": "dams, pipes and canals that move and store water"
+  },
+  {
+   "term": "environmental flow",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "dòng chảy môi trường",
+   "en": "water left in a river to keep its ecosystem alive"
+  },
+  {
+   "term": "water body",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "thuỷ vực",
+   "en": "any area of water such as a lake, river or reservoir"
+  },
+  {
+   "term": "water management",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "quản lý nước",
+   "en": "planning how water is stored, shared and used"
+  },
+  {
+   "term": "water resource management",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "quản lý tài nguyên nước",
+   "en": "coordinated planning of water use across a basin"
+  },
+  {
+   "term": "river discharge",
+   "pos": "n",
+   "deck": "hydro",
+   "vi": "lưu lượng sông",
+   "en": "the volume of water passing a river cross-section per second"
+  }
+ ]
+}

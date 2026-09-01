@@ -1,0 +1,149 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8">
+<title>smoke</title><link rel="stylesheet" href="../assets/css/app.css"></head><body>
+<main id="view" class="view"></main><div id="toast" class="toast"></div>
+<pre id="RESULT">running…</pre>
+<script src="../data/vocab.js"></script>
+<script src="../assets/js/store.js"></script>
+<script src="../assets/js/srs.js"></script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/ui.js"></script>
+<script src="../assets/js/games/registry.js"></script>
+<script src="../assets/js/games/flash.js"></script>
+<script src="../assets/js/games/quiz.js"></script>
+<script src="../assets/js/games/listen.js"></script>
+<script src="../assets/js/games/scramble.js"></script>
+<script src="../assets/js/games/cloze.js"></script>
+<script src="../assets/js/games/match.js"></script>
+<script src="../assets/js/games/speed.js"></script>
+<script src="../assets/js/app.js"></script>
+<script>
+var log = [], errs = [];
+function flush(){ var n=document.getElementById('RESULT'); if(n) n.textContent = log.join('\n') + (errs.length? '\n\nLOI:\n'+errs.join('\n') : ''); }
+window.onerror = function (m, s, l) { errs.push('JS ERROR: ' + m + ' @' + (s||'').split('/').pop() + ':' + l); };
+window.confirm = function () { return true; };
+window.prompt = function () { return null; };
+function $(s, r) { return (r||document).querySelector(s); }
+function all(s, r) { return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
+
+function click(n) { if (n && !n.disabled) n.click(); }
+
+/* Robot: bam bua theo do uu tien cho toi khi ra man ket qua. */
+function robot(maxSteps, doneWhen, cb) {
+  var steps = 0;
+  (function step() {
+    if (doneWhen()) return cb(null, steps);
+    if (++steps > maxSteps) return cb('KHONG KET THUC sau ' + maxSteps + ' buoc', steps);
+    var v = $('#view');
+    var flip = $('.flip:not(.is-flipped)', v);
+    if (flip) { flip.click(); return setTimeout(step, 30); }
+    var tiles = all('.tray .tile:not(.used)', v);
+    if (tiles.length) { click(tiles[0]); return setTimeout(step, 20); }
+    var check = all('.btn.primary', v).filter(function (b) { return b.textContent === 'Kiểm tra' && !b.disabled; });
+    if (check.length) { click(check[0]); return setTimeout(step, 60); }
+    var pairSel = $('.pair.sel', v);
+    if (pairSel) {
+      var vis = all('.match-col', v)[1];
+      var cand = all('.pair:not(.done)', vis);
+      click(cand[Math.floor(Math.random() * cand.length)]);
+      return setTimeout(step, 30);
+    }
+    var lefts = all('.match-col', v)[0] ? all('.pair:not(.done)', all('.match-col', v)[0]) : [];
+    if (lefts.length) { click(lefts[0]); return setTimeout(step, 30); }
+    var next = $('.reveal-next', v);
+    if (next) { click(next); return setTimeout(step, 30); }
+    var opts = all('.opt', v);
+    if (opts.length && !$('.opt.ok', v) && !$('.opt.bad', v)) {
+      click(opts[Math.floor(Math.random() * opts.length)]); return setTimeout(step, 60);
+    }
+    var wide = all('.btn.wide', v).filter(function (b) { return /Nhớ rồi|Chưa nhớ|Đúng|Sai/.test(b.textContent); });
+    if (wide.length) { click(wide[Math.floor(Math.random() * wide.length)]); return setTimeout(step, 30); }
+    setTimeout(step, 60);
+  })();
+}
+
+var GAMES = window.Games.all().map(function (g) { return g.id; });
+var queue = GAMES.concat(['mix']);
+var idx = 0;
+
+function runNext() {
+  if (idx >= queue.length) return finish();
+  var id = queue[idx++]; log.push('-> bat dau ' + id); flush();
+  var before = window.Store.get().totalReviews;
+  location.hash = '#/play/all/' + id;
+  setTimeout(function () {
+    robot(6000, function () { return !!$('.result'); }, function (err, steps) {
+      var after = window.Store.get().totalReviews;
+      flush(); log.push((err ? 'FAIL ' : 'OK   ') + id.padEnd(9) + ' buoc=' + String(steps).padStart(3) +
+               ' luot ghi SRS=' + (after - before) + (err ? ' | ' + err : ''));
+      if (err) errs.push(id + ': ' + err); flush();
+      location.hash = '#/';
+      setTimeout(runNext, 60);
+    });
+  }, 120);
+}
+
+function checkScreens() {
+  [['#/', '.path'], ['#/deck/hydro', '.game-grid'], ['#/list/all', '.word-list'],
+   ['#/stats', '.chart'], ['#/settings', '.settings']].forEach(function (p) {
+    location.hash = p[0];
+    window.dispatchEvent(new HashChangeEvent('hashchange'));
+    log.push(($(p[1]) ? 'OK   ' : 'FAIL ') + 'man hinh ' + p[0] + ' -> ' + p[1]);
+    if (!$(p[1])) errs.push('man hinh ' + p[0] + ' khong render ' + p[1]); flush();
+  });
+  location.hash = '#/list/all';
+  window.dispatchEvent(new HashChangeEvent('hashchange'));
+  var n = all('.word').length;
+  log.push((n === window.Data.cards.length ? 'OK   ' : 'FAIL ') + 'danh sach tu: ' + n + '/' + window.Data.cards.length);
+  if (n !== window.Data.cards.length) errs.push('danh sach tu render thieu');
+  var noEx = window.Data.cards.filter(function(c){return !c.ex;}).length;
+  log.push('the khong co vi du: ' + noEx + '/' + window.Data.cards.length);
+  log.push('game da dang ky: ' + window.Games.all().length + ' (' + GAMES.join(', ') + ')');
+}
+
+/* Bo loc danh sach tu: dem tren man hinh phai khop SRS.summary,
+   va moi/dang hoc/da thuoc phai chia het tap the. */
+function checkFilters() {
+  var su = window.SRS.summary(window.Data.cards);
+  var want = { all: su.total, due: su.due, learning: su.learning,
+               mastered: su.mastered, 'new': su.fresh };
+  var sum = 0;
+  Object.keys(want).forEach(function (id) {
+    location.hash = '#/list/all/' + id;
+    window.dispatchEvent(new HashChangeEvent('hashchange'));
+    var on = $('.filter.on');
+    var rows = all('.word').length;
+    var ok = !!on && rows === want[id];
+    log.push((ok ? 'OK   ' : 'FAIL ') + 'bo loc ' + id + ': hien ' + rows + ' tu, SRS bao ' + want[id]);
+    if (!ok) errs.push('bo loc ' + id + ' lech: ' + rows + ' != ' + want[id]);
+    if (id === 'learning' || id === 'mastered' || id === 'new') sum += rows;
+  });
+  var okSum = sum === su.total;
+  log.push((okSum ? 'OK   ' : 'FAIL ') + 'moi + dang hoc + da thuoc = ' + sum + '/' + su.total);
+  if (!okSum) errs.push('ba nhom khong chia het tap the');
+  flush();
+}
+
+function finish() {
+  checkFilters();
+  location.hash = '#/stats';
+  window.dispatchEvent(new HashChangeEvent('hashchange'));
+  var s = window.Store.get();
+  var studied = Object.keys(s.cards).length;
+  log.push('tong luot ghi SRS = ' + s.totalReviews + ' | the da cham = ' + studied + ' | streak = ' + s.streak);
+  // kiem tra localStorage that su co ghi
+  setTimeout(function () {
+    var raw = localStorage.getItem(window.Store.KEY);
+    log.push((raw && JSON.parse(raw).totalReviews === s.totalReviews ? 'OK   ' : 'FAIL ') + 'localStorage da luu');
+    if (!raw) errs.push('localStorage rong');
+    document.getElementById('RESULT').textContent =
+      log.join('\n') + '\n\n' + (errs.length ? 'LOI:\n' + errs.join('\n') : 'KHONG CO LOI') +
+      '\nKET QUA: ' + (errs.length ? 'HONG' : 'DAT');
+  }, 400);
+}
+
+window.App.start();
+localStorage.removeItem(window.Store.KEY);
+window.Store.reset();
+checkScreens();
+runNext();
+</script></body></html>
