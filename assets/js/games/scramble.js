@@ -4,14 +4,11 @@
   window.Games.register({
     id: 'scramble', name: 'Xếp chữ', icon: '🧩', minCards: 1,
     desc: 'Ghép các mảnh lại thành từ đúng',
-    canPlay: function (cards) {
-      return cards.some(function (c) { return c.term.replace(/[^a-z]/gi, '').length <= 16; });
-    },
+    // Tu qua dai thi xep chu thanh cuc hinh, khong con la bai tap tu vung.
+    usable: function (c) { return c.term.replace(/[^a-z]/gi, '').length <= 16; },
     mount: function (root, cards, done) {
       var UI = window.UI, results = [], t0 = 0;
-      var pool = cards.filter(function (c) {
-        return c.term.replace(/[^a-z]/gi, '').length <= 16;
-      });
+      var pool = cards;
       var i = 0;
 
       function render() {

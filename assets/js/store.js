@@ -9,6 +9,7 @@
       v: SCHEMA,
       cards: {},                 // id -> { reps, ease, interval, due, lapses, seen, correct, last }
       days: {},                  // 'YYYY-MM-DD' -> { reviews, correct }
+      badges: {},                // id huy hieu -> thoi diem mo khoa (ms)
       streak: 0,
       lastDay: '',
       totalReviews: 0,
@@ -20,6 +21,13 @@
 
   var state = null;
 
+  /* Them truong moi vao ban ghi cu ma KHONG tang SCHEMA — tang schema se
+     lam migrate() vut mat chuoi ngay va lich su. Chi bu truong con thieu. */
+  function fill(s) {
+    if (!s.badges) s.badges = {};
+    return s;
+  }
+
   function load() {
     if (state) return state;
     try {
@@ -29,7 +37,7 @@
       state = blank();
     }
     if (!state || state.v !== SCHEMA) state = migrate(state);
-    return state;
+    return fill(state);
   }
 
   function migrate(old) {
@@ -96,6 +104,18 @@
 
     setSetting: function (k, v) { load()[k] = v; save(); },
 
+    /** Da mo khoa huy hieu nay chua. */
+    hasBadge: function (id) { return !!load().badges[id]; },
+
+    /** Mo khoa huy hieu. Tra ve true neu day la lan dau tien. */
+    award: function (id) {
+      var s = load();
+      if (s.badges[id]) return false;
+      s.badges[id] = Date.now();
+      save();
+      return true;
+    },
+
     reset: function () {
       try { localStorage.removeItem(KEY); } catch (e) {}
       state = null;
@@ -106,7 +126,7 @@
     importJSON: function (txt) {
       var o = JSON.parse(txt);
       if (!o || typeof o !== 'object' || !o.cards) throw new Error('Tệp không hợp lệ');
-      state = o.v === SCHEMA ? o : migrate(o);
+      state = fill(o.v === SCHEMA ? o : migrate(o));
       try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
     }
   };

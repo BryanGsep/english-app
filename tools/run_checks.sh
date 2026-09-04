@@ -28,8 +28,16 @@ else
   echo "  (bo qua: khong tim thay node)"
 fi
 
+echo
+echo "== 4. Tuong thich nguoc voi nguoi dung cu =="
+if command -v node >/dev/null && git -C "$ROOT" rev-parse HEAD >/dev/null 2>&1; then
+  node tools/upgrade_test.js || FAIL=1
+else
+  echo "  (bo qua: can node va mot commit HEAD de so sanh)"
+fi
+
 if [ ! -x "$CHROME" ]; then
-  echo; echo "== 4-5. Bo qua: khong tim thay Google Chrome =="
+  echo; echo "== 5-6. Bo qua: khong tim thay Google Chrome =="
   exit $FAIL
 fi
 
@@ -45,13 +53,13 @@ run_dom () {  # $1 = file html, $2 = virtual time budget (ms), $3 = tran thoi gi
 }
 
 echo
-echo "== 4. Choi thu tung game bang robot =="
+echo "== 5. Choi thu tung game bang robot =="
 OUT=$(run_dom tools/smoke.html 900000 240)
 echo "$OUT"
 echo "$OUT" | grep -q "KET QUA: DAT" || FAIL=1
 
 echo
-echo "== 5. Tran ngang o be rong 360px =="
+echo "== 6. Tran ngang o be rong 360px =="
 OUT=$(run_dom tools/frame.html 8000 60)
 echo "$OUT"
 echo "$OUT" | grep -q "TRAN:" && { echo "  ! Co phan tu tran ra ngoai 360px"; FAIL=1; }

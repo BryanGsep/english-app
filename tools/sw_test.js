@@ -108,6 +108,37 @@ function evt(waited) {
   check(!(await caches.keys()).includes('esp-trainer-v0-cu'), 'activate don cache phien ban cu',
     'con lai: ' + (await caches.keys()).join(','));
 
+  /* NANG CAP: may nguoi dung cu dang giu cache ban cu.
+     Sau khi cai + kich hoat ban moi, khong duoc con mieng nao cua ban cu lot ra
+     (app lai nua cu nua moi la hong nang hon la khong cap nhat). */
+  stores.clear();
+  const oldCache = makeCache('esp-trainer-v0-cu');
+  oldCache._map.set(BASE, { url: BASE, status: 200, fromCache: true, stale: true, clone() { return this; } });
+  oldCache._map.set(BASE + 'index.html',
+    { url: BASE + 'index.html', status: 200, fromCache: true, stale: true, clone() { return this; } });
+  oldCache._map.set(BASE + 'assets/js/app.js',
+    { url: BASE + 'assets/js/app.js', status: 200, fromCache: true, stale: true, clone() { return this; } });
+  stores.set('esp-trainer-v0-cu', oldCache);      // cache cu nam TRUOC nen se duoc do toi truoc
+
+  w = [];
+  handlers.install(evt(w));
+  await Promise.all(w);
+  w = [];
+  handlers.activate(evt(w));
+  await Promise.all(w);
+  check((await caches.keys()).length === 1, 'nang cap xong chi con dung mot cache',
+    'con lai: ' + (await caches.keys()).join(','));
+  networkUp = false;
+  for (const asset of ['index.html', 'assets/js/app.js']) {
+    const wu = [];
+    handlers.fetch({ ...evt(wu), request: { method: 'GET', url: BASE + asset } });
+    let r = null;
+    try { r = await wu[0]; } catch (e) { r = null; }
+    check(!!r && !r.stale, 'nguoi dung cu nhan ban moi cua ' + asset,
+      r && r.stale ? 'van tra file cua cache cu' : '');
+  }
+  networkUp = true;
+
   /* fetch khi MAT MANG: van phai tra ra ban cache */
   networkUp = false;
   for (const asset of ['index.html', 'data/vocab.js', 'assets/js/app.js', 'assets/css/app.css']) {

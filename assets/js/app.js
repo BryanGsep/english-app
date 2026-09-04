@@ -4,6 +4,7 @@
   'use strict';
   var UI = window.UI, Data = window.Data, Store = window.Store, SRS = window.SRS;
   var view, session = null;
+  var screenTick = 0;        // tang moi lan doi man hinh — chan hieu ung ban muon
 
   /* ---------- helper ---------- */
 
@@ -135,6 +136,10 @@
       path.appendChild(node);
     });
     view.appendChild(path);
+
+    var bc = window.Celebrate.counts();
+    view.appendChild(UI.btn('🎀 Huy hiệu đã mở khoá: ' + bc.got + '/' + bc.total, 'wide',
+      function () { location.hash = '#/stats'; }));
 
     var links = UI.el('div', 'row gap');
     links.appendChild(UI.btn('📊 Tiến độ', 'wide', function () { location.hash = '#/stats'; }));
@@ -310,31 +315,53 @@
 
   /* ---------- phien hoc ---------- */
 
+  var CHUNK = 4;              // so the moi vong o che do tron
+
   function startSession(deckId, gameId) {
-    var cards = Data.ofDeck(deckId);
-    if (!cards.length) { UI.toast('Chặng này chưa có từ nào'); location.hash = '#/'; return; }
+    var all = Data.ofDeck(deckId);
+    if (!all.length) { UI.toast('Chặng này chưa có từ nào'); location.hash = '#/'; return; }
+    var one = gameId === 'mix' ? null : window.Games.get(gameId);
+    if (gameId !== 'mix' && !one) { location.hash = '#/deck/' + deckId; return; }
+
+    // Chi xep vao hang doi nhung the game nay dung duoc, de moi tu duoc phat
+    // deu thuc su duoc hoi. Truoc day game tu loc ben trong nen the bi bo am tham.
+    var cards = one ? window.Games.usable(one, all) : all;
+    if (!cards.length) {
+      UI.toast('Không có từ nào hợp với kiểu chơi này', 'bad');
+      location.hash = '#/deck/' + deckId;
+      return;
+    }
+
     var size = Store.get().sessionSize || 12;
-    var queue = SRS.queue(cards, size);
-    if (!queue.length) queue = Data.shuffle(cards).slice(0, size);
+    // Game nao khai bao wantCards (vd chop nhoang 45 giay) thi lay them the cho du dung,
+    // neu khong nguoi hoc se bi hoi di hoi lai vai tu. Van la app chon the, khong phai game.
+    var need = one && one.wantCards ? Math.max(size, one.wantCards) : size;
+    var queue = SRS.queue(cards, need);
+    if (!queue.length) queue = Data.shuffle(cards).slice(0, need);
 
     var rounds = [];
     if (gameId === 'mix') {
-      var pool = window.Games.eligible(queue);
-      var chunk = 4, last = null;
-      for (var i = 0; i < queue.length; i += chunk) {
-        var part = queue.slice(i, i + chunk);
-        var ok = window.Games.eligible(part).filter(function (g) { return g.id !== last; });
-        if (!ok.length) ok = window.Games.eligible(part);
-        if (!ok.length) ok = pool;
+      // Game khai bao wantCards (tinh gio, hoi rat nhieu luot) khong vao che do tron:
+      // lat 4 the qua mong, no se hoi di hoi lai dung may tu do. Choi rieng thi du the.
+      var mixable = function (g) { return !g.wantCards; };
+      var pending = queue.slice(), last = null, guard = 0;
+      while (pending.length && guard++ < 200) {
+        var part = pending.slice(0, CHUNK);
+        var fit = window.Games.eligible(part).filter(mixable);
+        var ok = fit.filter(function (g) { return g.id !== last; });
+        if (!ok.length) ok = fit;
+        if (!ok.length) break;                 // khong kieu choi nao hop lat nay
         var g = ok[Math.floor(Math.random() * ok.length)];
         last = g.id;
-        rounds.push({ game: g, cards: part });
+        var use = window.Games.usable(g, part);
+        rounds.push({ game: g, cards: use });
+        // The game vua roi khong dung duoc van nam lai, vong sau se hoi — khong mat the.
+        pending = pending.filter(function (c) { return use.indexOf(c) === -1; });
       }
     } else {
-      var one = window.Games.get(gameId);
-      if (!one) { location.hash = '#/deck/' + deckId; return; }
       rounds.push({ game: one, cards: queue });
     }
+    if (!rounds.length) { UI.toast('Chưa đủ từ để chơi'); location.hash = '#/deck/' + deckId; return; }
 
     session = {
       deckId: deckId, gameId: gameId, rounds: rounds, idx: 0,
@@ -357,9 +384,21 @@
     view.appendChild(stage);
 
     r.game.mount(stage, r.cards, function (results) {
+      // Moi the chi duoc ghi MOT lan mot vong. Game tra trung thi gop lai,
+      // sai de len dung — ghi trung se thoi phong khoang on cua SRS.
+      var byId = {}, order = [];
       (results || []).forEach(function (x) {
-        session.results.push(x);
-        Store.record(x.id, !!x.correct);      // NOI DUY NHAT ghi SRS
+        if (!x || !x.id) return;
+        if (byId[x.id]) {
+          byId[x.id].correct = byId[x.id].correct && !!x.correct;
+          return;
+        }
+        byId[x.id] = { id: x.id, correct: !!x.correct, ms: x.ms || 0 };
+        order.push(x.id);
+      });
+      order.forEach(function (id) {
+        session.results.push(byId[id]);
+        Store.record(id, byId[id].correct);   // NOI DUY NHAT ghi SRS
       });
       session.idx++;
       playRound();
@@ -377,6 +416,7 @@
 
     UI.clear(view);
     view.appendChild(header('Kết quả', '#/'));
+    view.appendChild(window.Celebrate.cheer(acc, res.length));
     var box = UI.el('div', 'result');
     box.appendChild(UI.ring(acc, acc + '%', 'chính xác'));
     box.appendChild(UI.el('p', 'big', right + '/' + res.length + ' câu đúng'));
@@ -408,6 +448,15 @@
     }));
     row.appendChild(UI.btn('Về trang chủ', 'wide', function () { location.hash = '#/'; }));
     view.appendChild(row);
+
+    // Moc thanh tich: cham lai mot nhip de nguoi hoc kip nhin diem truoc.
+    var fresh = window.Celebrate.check({ total: res.length, acc: acc });
+    if (fresh.length) {
+      var tick = screenTick;
+      setTimeout(function () {
+        if (tick === screenTick && view.querySelector('.result')) window.Celebrate.show(fresh);
+      }, 560);
+    }
   }
 
   /* ---------- man hinh: tien do ---------- */
@@ -483,6 +532,12 @@
       g.appendChild(r);
     });
     view.appendChild(g);
+
+    var bc = window.Celebrate.counts();
+    view.appendChild(UI.el('h2', 'section', 'Huy hiệu — ' + bc.got + '/' + bc.total));
+    view.appendChild(UI.el('p', 'micro pad',
+      'Chạm vào một huy hiệu để xem lời chúc và điều kiện mở khoá.'));
+    view.appendChild(window.Celebrate.wall());
 
     view.appendChild(UI.btn('📖 Xem toàn bộ từ vựng', 'wide', function () { location.hash = '#/list/all'; }));
   }
@@ -563,6 +618,7 @@
   function route() {
     var h = (location.hash || '#/').replace(/^#/, '');
     var p = h.split('/').filter(Boolean);
+    screenTick++;
     window.scrollTo(0, 0);
     if (window.speechSynthesis) { try { window.speechSynthesis.cancel(); } catch (e) {} }
 

@@ -4,16 +4,11 @@
   window.Games.register({
     id: 'cloze', name: 'Điền vào câu', icon: '📝', minCards: 1,
     desc: 'Điền từ đúng vào câu thật trong paper',
-    canPlay: function (cards) {
-      return window.Data.withExample(cards).some(function (c) {
-        return !!window.UI.blank(c.ex, c.term);
-      });
-    },
+    // Can cau vi du that VA che duoc cum tu trong do.
+    usable: function (c) { return !!c.ex && !!window.UI.blank(c.ex, c.term); },
     mount: function (root, cards, done) {
       var UI = window.UI, results = [], i = 0, locked = false;
-      var pool = window.Data.withExample(cards).filter(function (c) {
-        return !!UI.blank(c.ex, c.term);
-      });
+      var pool = cards;
 
       function render() {
         UI.clear(root); locked = false;

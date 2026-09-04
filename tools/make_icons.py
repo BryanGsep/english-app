@@ -3,8 +3,8 @@
 import zlib, struct, math, os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BG = (11, 18, 32)
-WAVES = [((56, 189, 248), 0.40, 1.0, 0.0), ((129, 140, 248), 0.56, 1.15, 1.1)]
+BG = (216, 36, 111)                       # hong dam lam nen
+WAVES = [((255, 255, 255), 0.40, 1.0, 0.0), ((255, 200, 226), 0.56, 1.15, 1.1)]
 
 def png(path, size):
     rows = []

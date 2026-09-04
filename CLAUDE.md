@@ -36,6 +36,8 @@ assets/js/
   srs.js              # thuật toán lặp ngắt quãng (SM-2 rút gọn)
   data.js             # index hoá VOCAB: theo deck, theo id, lấy distractor
   ui.js               # helper DOM (el, toast, tiến trình, nút)
+  art.js              # bộ tranh dễ thương vẽ bằng SVG thuần (window.Art)
+  celebrate.js        # lời chúc sau mỗi bài + huy hiệu mốc (window.Celebrate)
   games/*.js          # mỗi game 1 file, đăng ký vào window.Games
   app.js              # router hash, màn hình chính, khởi động
 data/vocab.js         # window.VOCAB — SINH RA, không sửa tay
@@ -52,7 +54,11 @@ assets/icons/*.png    # SINH RA bởi tools/make_icons.py
 ```
 
 **Thứ tự nạp script** trong `index.html` là bắt buộc:
-`vocab.js → store.js → srs.js → data.js → ui.js → games/registry.js → games/*.js → app.js`
+`vocab.js → store.js → srs.js → data.js → ui.js → art.js → celebrate.js →
+games/registry.js → games/*.js → app.js`
+
+`tools/smoke.html` nạp lại đúng danh sách này — thêm file vào `index.html` thì phải
+thêm vào cả `smoke.html`, nếu không robot kiểm tra sẽ chạy với app thiếu script.
 
 ## 3. Quy ước code
 
@@ -63,6 +69,9 @@ assets/icons/*.png    # SINH RA bởi tools/make_icons.py
 - Không `innerHTML` với dữ liệu người dùng. Nội dung từ vựng là dữ liệu tĩnh nên
   dùng `textContent` mặc định; chỉ dùng `innerHTML` cho markup do code tự sinh.
 - CSS: đặt biến màu ở `:root`. Không viết màu hex rải rác trong file.
+  Chủ đề là **hồng pastel nền sáng**. Chữ trên nền sáng dùng `--brand-ink` / `--accent-ink`
+  (đủ tương phản), còn `--brand` / `--accent` chỉ để tô nền và viền.
+  Bảng màu của tranh minh hoạ nằm riêng ở đầu `art.js`, không trộn vào CSS.
 - Không tối ưu sớm. Corpus ~530 từ, duyệt mảng tuyến tính là đủ.
 
 ## 4. Hợp đồng dữ liệu
@@ -97,12 +106,32 @@ window.Games.register({
   icon: '🎯',
   desc: 'Chọn nghĩa đúng',
   minCards: 4,             // số thẻ tối thiểu để chơi được
+  wantCards: 24,           // (tuỳ chọn) số thẻ game muốn được phát — xem bên dưới
+  usable(card),            // (tuỳ chọn) thẻ này game dùng được không — xem bên dưới
   mount(root, cards, done) // vẽ vào root; gọi done(results) khi xong
 });
 ```
 
 - `cards`: mảng thẻ đã do session chọn sẵn. Game **không** tự chọn thẻ, **không** tự đọc Store.
+- `wantCards`: game tính giờ (chớp nhoáng) trả lời được nhiều lượt hơn số thẻ mặc định,
+  nên khai báo số thẻ nó cần. Chơi riêng thì hàng đợi lấy `max(sessionSize, wantCards)`.
+  Đổi lại, game khai báo `wantCards` **không vào chế độ trộn** — lát 4 thẻ của chế độ trộn
+  quá mỏng, nó sẽ hỏi đi hỏi lại đúng mấy từ đó suốt 45 giây.
+  Quyền chọn thẻ vẫn ở app — game chỉ nói mình cần bao nhiêu.
+- **Game không được tự lọc thẻ bên trong `mount`.** Kiểu chơi nào chỉ dùng được một số thẻ
+  (xếp chữ bỏ từ quá dài, điền vào câu cần có câu ví dụ) thì khai báo `usable(card)`.
+  App lọc trước khi phát, nên hàng đợi chỉ gồm thẻ thật sự sẽ được hỏi. Lọc lén bên trong
+  làm phiên học hứa 12 từ nhưng chỉ hỏi 5, người học không hề biết.
+  Ở chế độ trộn, thẻ mà game này không dùng được **nằm lại hàng chờ** cho vòng sau chứ
+  không bị bỏ. `Games.eligible` cũng xét trên tập đã lọc, nên `canPlay` chỉ còn dùng cho
+  điều kiện ngoài thẻ (ví dụ máy có `speechSynthesis` không).
+- **Không hỏi lại một thẻ khi chưa duyệt hết lượt.** Game lặp thẻ phải rút theo túi đã xáo
+  (`Data.shuffle`, rút hết mới xáo lại), không được `cards[random]` — kiểu đó lặp ngay từ
+  câu thứ ba và người học chỉ gặp đi gặp lại vài từ.
 - `done(results)`: `results = [{ id, correct: bool, ms: number }]`.
+  **Mỗi thẻ tối đa một dòng.** Thẻ bị hỏi nhiều lần trong một vòng thì game phải tự gộp,
+  sai một lần là tính sai cả thẻ. App vẫn gộp lần nữa như lưới an toàn, nhưng ghi trùng
+  sẽ thổi phồng khoảng ôn của SRS (4 lượt đúng trong 45 giây = thẻ bị đánh dấu "đã thuộc").
   App là nơi duy nhất ghi kết quả vào SRS. Game không được gọi `Store.save` hay `SRS.grade`.
 - Game phải tự dọn `setInterval`/listener khi bị unmount (`root` bị xoá).
 - **Trả lời sai thì phải hiện đáp án đúng.** Dùng `UI.correction(root, card, next)` (chèn bảng
@@ -111,6 +140,25 @@ window.Games.register({
 
 → Thêm game mới = thêm 1 file trong `games/`, thêm 1 dòng `<script>` vào `index.html`.
 Không sửa `app.js`.
+
+## 5b. Lời chúc & huy hiệu
+
+`Art` và `Celebrate` chỉ **vẽ**; chúng không đụng vào SRS.
+
+- `Art.svg(name)` / `Art.node(name, cls)` trả về một trong 23 nhân vật SVG. Tranh là markup
+  do code tự sinh nên đặt bằng `innerHTML` là an toàn. **Không tải ảnh từ mạng** (mục 1.6),
+  không thêm file ảnh nhị phân — mọi hình đều là SVG viết tay trong `art.js`.
+- `Celebrate.cheer(acc, total)` → thẻ chúc mừng gắn vào màn kết quả: mỗi lần một tranh và
+  một câu khác nhau, giọng điệu theo % đúng (100 / ≥80 / ≥60 / thấp hơn).
+- `Celebrate.check(round)` → mảng huy hiệu **vừa** mở khoá; gọi **sau** khi app.js đã ghi
+  xong SRS. Nó tự ghi nhận qua `Store.award`, mỗi huy hiệu chỉ bật một lần.
+- `Celebrate.show(list)` mở lớp phủ chúc mừng; `Celebrate.wall()` dựng tủ huy hiệu ở màn
+  Tiến độ. Lớp phủ tự đóng khi đổi `hashchange`, đừng để nó kẹt lại giữa các màn.
+- **`id` huy hiệu là khoá ổn định** như `id` thẻ: đổi id = người học mất huy hiệu đã mở.
+  Huy hiệu theo chặng lấy id `deck-<deck.id>`.
+- Trạng thái huy hiệu nằm trong `Store` ở trường `badges` (`id → thời điểm mở khoá`).
+  Trường này được **bù thêm** cho bản ghi cũ trong `fill()`, **không** tăng `SCHEMA` —
+  tăng schema sẽ khiến `migrate()` vứt mất chuỗi ngày và lịch sử của người học.
 
 ## 6. Lặp ngắt quãng (SRS)
 
@@ -132,15 +180,16 @@ kiểm tra `data/vocab.js` → thử trên trình duyệt. **Không bao giờ s�
 (ứng viên thuật ngữ) → thêm term vào seed → `build_vocab.py`.
 
 **Trước khi báo xong bất cứ thay đổi nào:** chạy `bash tools/run_checks.sh`. Phải in
-`TAT CA KIEM TRA: DAT`. Script gồm 5 bước:
+`TAT CA KIEM TRA: DAT`. Script gồm 6 bước:
 
 | # | Bước | Bắt lỗi gì |
 |---|------|-----------|
 | 1 | `tools/check.py` | id trùng, thiếu `vi`, deck lạ, ví dụ không nguồn, script thiếu/sai thứ tự trong `index.html`, game tự ghi SRS |
 | 2 | `node --check` | lỗi cú pháp JS |
 | 3 | `tools/sw_test.js` | service worker cache thiếu file, không dọn cache cũ, không đọc được khi mất mạng |
-| 4 | `tools/smoke.html` | robot chơi **hết mọi game** + chế độ trộn tới màn kết quả, đếm lượt ghi SRS, xác nhận localStorage đã lưu |
-| 5 | `tools/frame.html` | tràn ngang ở bề rộng thật 360px trên mọi màn hình |
+| 4 | `tools/upgrade_test.js` | tiến độ của người dùng cũ có sống sót qua bản mới không |
+| 5 | `tools/smoke.html` | robot chơi **hết mọi game** + chế độ trộn tới màn kết quả, đếm lượt ghi SRS, xác nhận localStorage đã lưu, và **đo độ phủ thẻ** |
+| 6 | `tools/frame.html` | tràn ngang ở bề rộng thật 360px trên mọi màn hình |
 
 Bước 1 còn bắt luôn các hiểm hoạ GitHub Pages ở mục 1.7: file bắt đầu bằng `_`, thiếu
 `.nojekyll`, đường dẫn tuyệt đối, và file có trong `index.html` nhưng thiếu trong `sw.js`.
@@ -150,7 +199,23 @@ Bước 1 còn bắt luôn các hiểm hoạ GitHub Pages ở mục 1.7: file b�
 Xem giao diện: `tools/shot.html?<hash>` nhúng app trong khung 360px để chụp ảnh, ví dụ
 `open "tools/shot.html?%23/deck/hydro"`.
 
-Bước 4 tự dò game qua `Games.all()` — thêm game mới là nó tự được kiểm tra, không phải sửa gì.
+**Bước 4 (tương thích ngược)** chạy `store.js` + `srs.js` ở `git HEAD` — tức bản người dùng
+đang chạy — để sinh dữ liệu thật, rồi nạp chính chuỗi localStorage đó vào code mới và so
+từng trường. Nó bắt: mất chuỗi ngày học, mất tiến độ thẻ, đổi id thẻ làm mồ côi tiến độ,
+đổi nhãn "đã thuộc", hỏng nút Nhập tiến độ, và mở khoá huy hiệu ồ ạt vào mặt người dùng cũ.
+Vì vậy **đụng vào `store.js` hay `data/vocab.js` thì phải chạy lại bước này.**
+
+Bước 5 tự dò game qua `Games.all()` — thêm game mới là nó tự được kiểm tra, không phải sửa gì.
+
+**Đo độ phủ thẻ** (trong bước 4) bọc `mount` của mọi game để đếm: `phát` = số thẻ app đưa,
+`hỏi` = số thẻ thật sự có kết quả, `dòng` = số dòng trong `results`. Hai bất biến:
+
+- `dòng == hỏi` — không thẻ nào bị ghi điểm hai lần. Vi phạm là SRS bị thổi phồng.
+- `hỏi == phát` — không thẻ nào bị phát rồi bỏ quên. Miễn trừ cho game có `wantCards`
+  (tính giờ, hết giờ là dừng, không phủ hết là chuyện bình thường).
+
+Đây là lưới bắt cho đúng hai lỗi đã từng xảy ra: chớp nhoáng rút thẻ có hoàn lại rồi ghi
+mỗi lượt một dòng (1496 dòng cho 12 thẻ), và nối cặp chỉ lấy 6 thẻ đầu rồi vứt phần còn lại.
 
 **Không tự ý:** thêm framework, thêm backend, đổi `id` thẻ/deck/game, xoá key localStorage
 của người dùng, hay gọi mạng lúc chạy.

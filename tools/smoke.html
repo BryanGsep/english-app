@@ -7,6 +7,8 @@
 <script src="../assets/js/srs.js"></script>
 <script src="../assets/js/data.js"></script>
 <script src="../assets/js/ui.js"></script>
+<script src="../assets/js/art.js"></script>
+<script src="../assets/js/celebrate.js"></script>
 <script src="../assets/js/games/registry.js"></script>
 <script src="../assets/js/games/flash.js"></script>
 <script src="../assets/js/games/quiz.js"></script>
@@ -61,6 +63,43 @@ function robot(maxSteps, doneWhen, cb) {
   })();
 }
 
+/* Do do phu the: moi game duoc phat bao nhieu the, hoi that su bao nhieu,
+   va co the nao bi ghi diem hai lan khong. Bat ca hai lop loi:
+   - lap tu  (hoi mot the nhieu lan -> nhieu dong ket qua -> SRS bi thoi phong)
+   - bo tu   (the duoc phat ma khong bao gio duoc hoi) */
+var probe = null;
+window.Games.all().forEach(function (g) {
+  var orig = g.mount;
+  g.mount = function (root, cards, cb) {
+    if (probe) cards.forEach(function (c) { probe.handed[c.id] = 1; });
+    return orig.call(g, root, cards, function (res) {
+      if (probe) (res || []).forEach(function (r) {
+        probe.rows++;
+        probe.asked[r.id] = (probe.asked[r.id] || 0) + 1;
+      });
+      return cb(res);
+    });
+  };
+});
+
+function probeReport(id) {
+  var timed = !!(window.Games.get(id) || {}).wantCards;   // game tinh gio: khong the phu het
+  var handed = Object.keys(probe.handed).length;
+  var asked = Object.keys(probe.asked).length;
+  var dup = 0, worst = 0;
+  Object.keys(probe.asked).forEach(function (k) {
+    if (probe.asked[k] > 1) dup++;
+    worst = Math.max(worst, probe.asked[k]);
+  });
+  var badDup = probe.rows !== asked;
+  var badCover = !timed && asked !== handed;
+  log.push((badDup || badCover ? 'FAIL ' : 'OK   ') + 'do phu ' + id.padEnd(9) +
+           ' phat=' + handed + ' hoi=' + asked + ' dong=' + probe.rows +
+           ' the bi hoi lai=' + dup + ' (nhieu nhat ' + worst + ' lan)');
+  if (badDup) errs.push(id + ': ghi diem trung — ' + probe.rows + ' dong cho ' + asked + ' the');
+  if (badCover) errs.push(id + ': bo qua the — phat ' + handed + ' nhung chi hoi ' + asked);
+}
+
 var GAMES = window.Games.all().map(function (g) { return g.id; });
 var queue = GAMES.concat(['mix']);
 var idx = 0;
@@ -69,13 +108,17 @@ function runNext() {
   if (idx >= queue.length) return finish();
   var id = queue[idx++]; log.push('-> bat dau ' + id); flush();
   var before = window.Store.get().totalReviews;
+  probe = { handed: {}, asked: {}, rows: 0 };
   location.hash = '#/play/all/' + id;
   setTimeout(function () {
     robot(6000, function () { return !!$('.result'); }, function (err, steps) {
       var after = window.Store.get().totalReviews;
       flush(); log.push((err ? 'FAIL ' : 'OK   ') + id.padEnd(9) + ' buoc=' + String(steps).padStart(3) +
                ' luot ghi SRS=' + (after - before) + (err ? ' | ' + err : ''));
-      if (err) errs.push(id + ': ' + err); flush();
+      if (err) errs.push(id + ': ' + err);
+      probeReport(id);
+      probe = null;
+      flush();
       location.hash = '#/';
       setTimeout(runNext, 60);
     });
