@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Kiem tra tinh toan ven cua du lieu va cau hinh nap script. Xem CLAUDE.md muc 7."""
-import json, os, re, sys
+import json, os, re, sys, unicodedata
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 err, warn = [], []
@@ -101,14 +101,48 @@ if m:
         if "./" + rel not in m.group(1):
             err.append("sw.js chua cache %s - se hong khi offline" % rel)
 
+# Ghi chu tieng Viet duoc phep GIAI THICH cau that, khong duoc bia them chu tieng Anh.
+# Moi doan tieng Anh dat trong «...» phai co that trong chinh cau vi du cua the do.
+def _chuan(t):
+    t = unicodedata.normalize("NFKC", t)
+    for a, b in [("\u2010", "-"), ("\u2011", "-"), ("\u2012", "-"), ("\u2013", "-"),
+                 ("\u2014", "-"), ("\u2018", "'"), ("\u2019", "'"),
+                 ("\u201c", '"'), ("\u201d", '"'), ("\u00ad", "")]:
+        t = t.replace(a, b)
+    return re.sub(r"\s+", " ", t).lower()
+
+_VIET = "\u00e0\u00e1\u1ea3\u00e3\u1ea1\u0103\u00e2\u0111\u00e8\u00e9\u1ebb\u1ebd\u1eb9\u00ea" \
+        "\u00ec\u00ed\u1ec9\u0129\u1ecb\u00f2\u00f3\u1ecf\u00f5\u1ecd\u00f4\u01a1" \
+        "\u00f9\u00fa\u1ee7\u0169\u1ee5\u01b0\u1ef3\u00fd\u1ef7\u1ef9\u1ef5"
+trich = 0
+for c in vocab["cards"]:
+    y = (c.get("note") or {}).get("y", "")
+    ex = _chuan(c.get("ex") or "")
+    for m in re.findall(r"\u00ab([^\u00bb]+)\u00bb", y):
+        if any(ch in _VIET for ch in m.lower()) or not re.search(r"[a-zA-Z]", m):
+            continue                       # doan tieng Viet thi khong phai doi chieu
+        trich += 1
+        pos, ok = 0, True
+        for phan in [x for x in re.split(r"\s*\.\.\.\s*", m) if x.strip(" .")]:
+            k = ex.find(_chuan(phan).strip(" ."), pos)
+            if k < 0:
+                ok = False
+                break
+            pos = k + len(phan)
+        if not ok:
+            err.append("ghi chu cua the '%s' trich \u00ab%s\u00bb nhung cau vi du khong he co"
+                       % (c["id"], m))
+
 no_ex = [c["id"] for c in vocab["cards"] if not c["ex"]]
 if no_ex:
     warn.append("%d the khong co cau vi du trong corpus: %s"
                 % (len(no_ex), ", ".join(no_ex[:6]) + ("..." if len(no_ex) > 6 else "")))
 
-print("decks: %d | cards: %d | co vi du: %d"
+print("decks: %d | cards: %d | co vi du: %d | phien am: %d | giai nghia: %d (%d trich dan da doi chieu)"
       % (len(vocab["decks"]), len(vocab["cards"]),
-         sum(1 for c in vocab["cards"] if c["ex"])))
+         sum(1 for c in vocab["cards"] if c["ex"]),
+         sum(1 for c in vocab["cards"] if c.get("ipa")),
+         sum(1 for c in vocab["cards"] if c.get("note")), trich))
 for w in warn:
     print("  ~ CANH BAO:", w)
 for e in err:

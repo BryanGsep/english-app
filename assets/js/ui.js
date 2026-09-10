@@ -183,8 +183,12 @@
     var box = reveal(card, label);
     if (good) box.classList.add('good');
     root.appendChild(box);
-    var go = btn('Tiếp tục →', 'wide primary reveal-next', next);
+    // Bang sua sai cao hon man 360x640, nen nut di tiep phai dinh day man hinh —
+    // do duoc: de nut nam theo dong chay thi day nut o 708px tren man cao 640px,
+    // lan nao nguoi hoc cung phai cuon xuong mo tim.
+    var go = btn('Tiếp tục →', 'wide primary reveal-next stick', next);
     root.appendChild(go);
+    root.appendChild(el('div', 'stick-pad'));   // cho nut noi khong de len chu cuoi
     try { box.scrollIntoView({ block: 'nearest' }); } catch (e) {}
     return box;
   }

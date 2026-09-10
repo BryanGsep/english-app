@@ -38,6 +38,29 @@ EXTRA = {
     "ungauged":           "AH0 N G EY1 JH D",               # un + gauged
 }
 
+# Tu vua la danh tu vua la dong tu, trong am doi cho theo tu loai:
+#   a PRESent (mon qua)  <->  to preSENT (trinh bay)
+# CMUdict cho ca hai cach doc nhung khong noi cach nao ung voi tu loai nao, ma
+# thu tu trong file lai khong theo quy tac. Doan bua bang luat "danh tu thi trong am
+# truoc" se hong ngay voi emergency / evacuation / information (nhieu cach doc nhung
+# KHONG phai cap lech trong am). Nen liet ke tay, moi dong mot tu, kem the dung no.
+#   'truoc' = lay cach doc co trong am chinh gan dau tu nhat
+#   'sau'   = lay cach doc co trong am chinh xa dau tu nhat
+STRESS_BY_POS = {
+    "present":   "sau",     # the "present" (v) = trinh bay
+    "conduct":   "sau",     # the "conduct" (v) = tien hanh
+    "address":   "sau",     # the "address" (v) = giai quyet
+    "construct": "sau",     # the "construct" (v) = xay dung
+    "project":   "sau",     # the "project" (v) = du tinh
+    "overflow":  "sau",     # the "overflow" (v) = tran
+    "attribute": "sau",     # the "attribute to" (phr) - dung nghia dong tu
+    "contrast":  "truoc",   # the "in contrast" (phr) - dung nghia danh tu
+    "discharge": "truoc",   # the "discharge", "river discharge" (n)
+    "survey":    "truoc",   # the "survey data", "household survey"... (n)
+    "research":  "truoc",   # the "further research", "research gap" (n)
+    "impact":    "truoc",   # the "climate impact", "climate change impact" (n)
+}
+
 VOWEL = {
     "AA": "ɑ", "AE": "æ", "AH": "ʌ", "AO": "ɔ", "AW": "aʊ", "AY": "aɪ",
     "EH": "ɛ", "ER": "ɜr", "EY": "eɪ", "IH": "ɪ", "IY": "i", "OW": "oʊ",
@@ -67,20 +90,72 @@ for b in "P T K M N F L W V".split():
 ONSET3 = {("S", a, b) for a in "P T K".split() for b in "R L W Y".split()}
 
 
+def stress_pos(arpa):
+    """Am tiet thu may mang trong am chinh (-1 neu khong co)."""
+    k = 0
+    for p in arpa:
+        base = re.match(r"^([A-Z]+)", p).group(1)
+        if base in VOWEL:
+            if p.endswith("1"):
+                return k
+            k += 1
+    return -1
+
+
 def load_dict():
     if not os.path.exists(DICT):
         sys.stderr.write("tai cmudict ...\n")
         urllib.request.urlretrieve(URL, DICT)
-    d = {}
+    moi = {}
     for line in open(DICT, encoding="utf-8"):
         line = line.split("#")[0].strip()
         if not line:
             continue
         w, _, ph = line.partition(" ")
-        d.setdefault(re.sub(r"\(\d+\)$", "", w), ph.split())   # chi lay cach doc dau
+        moi.setdefault(re.sub(r"\(\d+\)$", "", w), []).append(ph.split())
     for w, ph in EXTRA.items():
-        d.setdefault(w, ph.split())
-    return d
+        moi.setdefault(w, [ph.split()])
+    return moi
+
+
+def chon_cach(word, cach, pos):
+    """Chon MOT cach doc trong so cac cach CMUdict dua ra, dua vao tu loai cua the.
+
+    Ba loai lech, moi loai mot luat:
+      1. Cap danh tu/dong tu doi trong am (present, conduct...) - bang STRESS_BY_POS.
+      2. Tu tan cung -ate: dong tu doc /-eit/, danh tu va tinh tu doc /-ət/
+         (to ESTiMATE  vs  an ESTimate). Day la quy tac that cua tieng Anh.
+      3. Con lai: lay cach dau tien, nhung neu co cach khac cung vi tri trong am
+         ma khong co dau nhan phu thua o dau tu thi lay cach do (require:
+         /ri-KWAI-er/ thay vi /RI-KWAI-er/).
+    """
+    if len(cach) == 1:
+        return cach[0]
+
+    muon = STRESS_BY_POS.get(word)
+    if muon:
+        vt = [stress_pos(x) for x in cach]
+        dich = min(vt) if muon == "truoc" else max(vt)
+        # Cung vi tri trong am thi lay cach dau tien cua tu dien - pho thong nhat
+        # (present: lay preSENT chu khong lay perZENT).
+        return cach[vt.index(dich)]
+
+    if word.endswith("ate") and len(word) > 4:
+        def duoi_day(ph):
+            for p in reversed(ph):
+                if re.match(r"^([A-Z]+)", p).group(1) in VOWEL:
+                    return re.match(r"^([A-Z]+)", p).group(1)
+            return ""
+        day = ["EY"] if pos == "v" else ["AH", "IH"]
+        for x in cach:
+            if duoi_day(x) in day:
+                return x
+
+    goc = stress_pos(cach[0])
+    for x in cach:
+        if stress_pos(x) == goc and not any(p.endswith("2") for p in x[:2]):
+            return x
+    return cach[0]
 
 
 def to_ipa(arpa):
@@ -134,11 +209,13 @@ def main():
         term = c["term"]
         parts, ok = [], True
         for w in re.findall(r"[A-Za-z'\-]+", term.lower()):
-            arpa = d.get(w)
+            cach = d.get(w)
+            arpa = chon_cach(w, cach, c["pos"]) if cach else None
             if not arpa and "-" in w:                     # tu ghep co gach noi
                 bits = [d.get(x) for x in w.split("-") if x]
                 if all(bits):
-                    arpa = [p for b in bits for p in b]
+                    arpa = [p for x, b in zip(w.split("-"), bits)
+                            for p in chon_cach(x, b, c["pos"])]
             if not arpa:
                 ok = False
                 miss.append(w)

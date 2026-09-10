@@ -65,7 +65,7 @@ window.VOCAB = {
    "freq": 93,
    "ex": "This provides a best estimate of the weather at any given place and time as well as an estimate of its confidence and uncertainty.",
    "src": "Towards a more reliable historical reanalysis: Improvements for version 3 of the Twentieth Century Reanalysis system",
-   "ipa": "ˈɛstəmət",
+   "ipa": "ˈɛstəˌmeɪt",
    "note": {
     "d": "Cách này cho ta ước tính tốt nhất về thời tiết tại một địa điểm và thời điểm bất kỳ, kèm theo mức độ tin cậy và độ bất định của ước tính đó.",
     "y": "Xuất hiện hai lần ở dạng danh từ: a best estimate of the weather và an estimate of its confidence."
@@ -81,7 +81,7 @@ window.VOCAB = {
    "freq": 62,
    "ex": "We present new analysis that tentatively links increases in climate variability with increasing food insecurity in the future.",
    "src": "Climate variability and vulnerability to climate change: a review",
-   "ipa": "ˈprɛzənt",
+   "ipa": "priˈzɛnt",
    "note": {
     "d": "Chúng tôi đưa ra phân tích mới, bước đầu cho thấy dao động khí hậu gia tăng có liên hệ với mất an ninh lương thực trong tương lai.",
     "y": "«We present new analysis» — động từ mở đầu quen thuộc khi tác giả giới thiệu đóng góp mới của mình."
@@ -132,7 +132,7 @@ window.VOCAB = {
    "ipa": "ˈfreɪmˌwɜrk",
    "note": {
     "d": "Bài báo mô tả lõi động lực phi thuỷ tĩnh được phát triển cho khung mô hình ICON (lưới hai mươi mặt, phi thuỷ tĩnh).",
-    "y": "«the ICON modelling framework» — khung mô hình, tức bộ khung phần mềm và lý thuyết để dựng mô hình."
+    "y": "«(ICON) modelling framework» — khung mô hình, tức bộ khung phần mềm và lý thuyết để dựng mô hình."
    }
   },
   {
@@ -241,7 +241,7 @@ window.VOCAB = {
    "freq": 35,
    "ex": "Detailed studies of snow cover processes require models that offer a fine description of the snow cover properties.",
    "src": "The detailed snowpack scheme Crocus and its implementation in SURFEX v7.2",
-   "ipa": "ˌriˈkwaɪər",
+   "ipa": "riˈkwaɪr",
    "note": {
     "d": "Nghiên cứu chi tiết các quá trình của lớp phủ tuyết đòi hỏi những mô hình mô tả thật tinh vi các đặc tính của lớp tuyết.",
     "y": "«Detailed studies ... require models that ...» — nêu điều kiện cần: muốn nghiên cứu chi tiết thì phải có mô hình chi tiết."
@@ -353,7 +353,7 @@ window.VOCAB = {
    "freq": 26,
    "ex": "Approximately 67% of the studies were conducted in developed countries, with the remaining 33% performed in developing countries.",
    "src": "A Systematic Review of Flood Damage Assessment: Insight for the Data-Scarce Regions",
-   "ipa": "ˈkɑndəkt",
+   "ipa": "kɑnˈdʌkt",
    "note": {
     "d": "Khoảng 67% số nghiên cứu được tiến hành ở các nước phát triển, 33% còn lại thực hiện ở các nước đang phát triển.",
     "y": "«studies were conducted» — dạng bị động chuẩn của văn phong học thuật khi nói nghiên cứu được tiến hành ở đâu."
@@ -401,7 +401,7 @@ window.VOCAB = {
    "freq": 24,
    "ex": "Proposals to address this included improving dykes and early warning systems as well as offering compensation for lost earnings.",
    "src": "The Impact of the Thai Flood of 2011 on the Rural Poor Population Living on the Flood Plain",
-   "ipa": "ˈæˌdrɛs",
+   "ipa": "əˈdrɛs",
    "note": {
     "d": "Các đề xuất để xử lý việc này gồm nâng cấp đê và hệ thống cảnh báo sớm, cũng như bồi thường phần thu nhập bị mất.",
     "y": "«Proposals to address this» — address đi với vấn đề, nghĩa là tìm cách xử lý nó."
@@ -801,7 +801,7 @@ window.VOCAB = {
    "freq": 13,
    "ex": "While the model was developed using household survey data from Bago, Myanmar, the framework should be applicable to other regions as well.",
    "src": "Quantitative Evaluation of Flood Control Measures and Educational Support to Reduce Disaster Vulnerability of the Poor Based on Household-level Savings Estimates",
-   "ipa": "sərˈveɪ ˈdeɪtə",
+   "ipa": "ˈsɜrˌveɪ ˈdeɪtə",
    "note": {
     "d": "Tuy mô hình được xây dựng từ dữ liệu khảo sát hộ gia đình ở Bago, Myanmar, khung phân tích này vẫn nên áp dụng được cho các vùng khác.",
     "y": "«household survey data from Bago» — dữ liệu điều tra hộ, nền của mô hình."
@@ -1268,7 +1268,7 @@ window.VOCAB = {
    "ipa": "ɪn ˈkɑntræst",
    "note": {
     "d": "Kết quả cho thấy đường đất chịu hư hại đáng kể, trái ngược với đường bê tông nhựa.",
-    "y": "«in contrast to Bituminous concrete roads» — cụm so sánh đối lập, làm nổi bật mức hư hại của đường đất."
+    "y": "«in contrast to Bituminous concrete (BC) roads» — cụm so sánh đối lập, làm nổi bật mức hư hại của đường đất."
    }
   },
   {
@@ -1393,7 +1393,7 @@ window.VOCAB = {
    "freq": 5,
    "ex": "We outline the major financial and governance challenges to implementing NbS at scale, highlighting avenues for further research.",
    "src": "Understanding the value and limits of nature-based solutions to climate change and other global challenges",
-   "ipa": "ˈfɜrðər riˈsɜrtʃ",
+   "ipa": "ˈfɜrðər ˈrisərtʃ",
    "note": {
     "d": "Chúng tôi phác ra những rào cản lớn về tài chính và về quản trị khi nhân rộng giải pháp thuận thiên, đồng thời chỉ ra hướng nghiên cứu tiếp theo.",
     "y": "«highlighting avenues for further research» — chỉ ra hướng cho nghiên cứu tiếp theo, câu kết quen thuộc của abstract."
@@ -1841,7 +1841,7 @@ window.VOCAB = {
    "freq": 2,
    "ex": "Using data and insights from these and several other earthquakes, we analyze how such events initiate processes that change mountain landscapes, highlight research gaps, and suggest pathways toward a more complete understanding of the seismic effects on the Earth's surface.",
    "src": "Earthquake‐Induced Chains of Geologic Hazards: Patterns, Mechanisms, and Impacts",
-   "ipa": "riˈsɜrtʃ ɡæp",
+   "ipa": "ˈrisərtʃ ɡæp",
    "note": {
     "d": "Dùng dữ liệu và hiểu biết từ những trận động đất này cùng vài trận khác, chúng tôi phân tích cách các sự kiện đó khởi phát những quá trình làm biến đổi cảnh quan miền núi, chỉ ra khoảng trống nghiên cứu và gợi mở hướng đi để hiểu đầy đủ hơn tác động của động đất lên bề mặt Trái Đất.",
     "y": "«highlight research gaps» — chỉ ra chỗ khoa học còn chưa biết, phần gần như bắt buộc của bài tổng quan."
@@ -1857,7 +1857,7 @@ window.VOCAB = {
    "freq": 2,
    "ex": "We highlight the need to reframe research questions in such a way that they can provide decision makers throughout the food system with actionable answers, and the need for investment in climate and environmental monitoring.",
    "src": "Climate variability and vulnerability to climate change: a review",
-   "ipa": "riˈsɜrtʃ ˈkwɛstʃən",
+   "ipa": "ˈrisərtʃ ˈkwɛstʃən",
    "note": {
     "d": "Chúng tôi nhấn mạnh cần đặt lại câu hỏi nghiên cứu sao cho chúng đem lại câu trả lời hành động được cho người ra quyết định trong toàn hệ thống lương thực, và cần đầu tư cho quan trắc khí hậu và môi trường.",
     "y": "«reframe research questions» — đặt lại câu hỏi nghiên cứu sao cho câu trả lời dùng được vào thực tế."
@@ -2049,7 +2049,7 @@ window.VOCAB = {
    "freq": 0,
    "ex": "",
    "src": "",
-   "ipa": "ˈætrəˌbjut tu"
+   "ipa": "əˈtrɪˌbjut tu"
   },
   {
    "id": "feasible",
@@ -2121,7 +2121,7 @@ window.VOCAB = {
    "freq": 63,
    "ex": "The annual tendency of the GCMs’ is bi-vocal: six GCMs’ projected a rise in annual flow, while one GCM projected a decrease in flow.",
    "src": "The Impact of Climate Change on Reservoir Inflows Using Multi Climate-Model under RCPs’ Including Extreme Events—A Case of Mangla Dam, Pakistan",
-   "ipa": "ˈprɑdʒɛkt",
+   "ipa": "prəˈdʒɛkt",
    "note": {
     "d": "Xu hướng năm mà các mô hình khí hậu toàn cầu đưa ra bị chia hai: sáu mô hình dự tính dòng chảy năm tăng, còn một mô hình dự tính giảm.",
     "y": "Dùng hai lần: projected a rise và projected a decrease — nghĩa dự tính tương lai, không phải «dự án»."
@@ -2473,7 +2473,7 @@ window.VOCAB = {
    "freq": 9,
    "ex": "Assessment of Climate Change Impact on Reservoir Inflows Using Multi Climate-Models under RCPs—The Case of Mangla Dam in Pakistan.",
    "src": "Assessment of Climate Change Impact on Reservoir Inflows Using Multi Climate-Models under RCPs—The Case of Mangla Dam in Pakistan",
-   "ipa": "ˈklaɪmət tʃeɪndʒ ˌɪmˈpækt",
+   "ipa": "ˈklaɪmət tʃeɪndʒ ˈɪmpækt",
    "note": {
     "d": "Đánh giá tác động của biến đổi khí hậu lên lưu lượng nước về hồ chứa bằng nhiều mô hình khí hậu theo các kịch bản RCP — trường hợp đập Mangla ở Pakistan.",
     "y": "Cụm danh từ ba tầng: assessment of → climate change impact → on reservoir inflows. Đây là đối tượng của cả nghiên cứu."
@@ -2841,7 +2841,7 @@ window.VOCAB = {
    "freq": 3,
    "ex": "Climate and landslides act at only partially overlapping spatial and temporal scales, complicating the evaluation of the climate impacts on landslides.",
    "src": "Landslides in a changing climate",
-   "ipa": "ˈklaɪmət ˌɪmˈpækt",
+   "ipa": "ˈklaɪmət ˈɪmpækt",
    "note": {
     "d": "Khí hậu và sạt lở chỉ trùng nhau một phần về thang không gian và thời gian, khiến việc đánh giá tác động của khí hậu lên sạt lở trở nên phức tạp.",
     "y": "«the climate impacts on landslides» — tác động của khí hậu lên sạt lở, khó đánh giá vì hai hiện tượng lệch thang thời gian."
@@ -3785,7 +3785,7 @@ window.VOCAB = {
    "freq": 10,
    "ex": "While the model was developed using household survey data from Bago, Myanmar, the framework should be applicable to other regions as well.",
    "src": "Quantitative Evaluation of Flood Control Measures and Educational Support to Reduce Disaster Vulnerability of the Poor Based on Household-level Savings Estimates",
-   "ipa": "ˈhaʊsˌhoʊld sərˈveɪ",
+   "ipa": "ˈhaʊsˌhoʊld ˈsɜrˌveɪ",
    "note": {
     "d": "Tuy mô hình được xây dựng từ dữ liệu khảo sát hộ gia đình ở Bago, Myanmar, khung phân tích này vẫn nên áp dụng được cho các vùng khác.",
     "y": "Cách thu thập dữ liệu ở cấp hộ gia đình; nhắc tới để nói rõ mô hình dựng từ số liệu của một địa phương cụ thể."
@@ -3801,7 +3801,7 @@ window.VOCAB = {
    "freq": 10,
    "ex": "Data was collected using a questionnaire survey delivered to randomly selected households in Rathnapura, Sri Lanka, in September 2017.",
    "src": "A local-scale analysis to understand differences in socioeconomic factors affecting economic loss due to floods among different communities",
-   "ipa": "ˌkwɛstʃəˈnɛr sərˈveɪ",
+   "ipa": "ˌkwɛstʃəˈnɛr ˈsɜrˌveɪ",
    "note": {
     "d": "Dữ liệu được thu thập bằng khảo sát bảng hỏi gửi tới các hộ gia đình chọn ngẫu nhiên ở Rathnapura, Sri Lanka, vào tháng 9 năm 2017.",
     "y": "Công cụ thu thập dữ liệu; câu nêu đủ cả nơi chốn và thời điểm khảo sát, đúng chuẩn mô tả phương pháp."
@@ -4025,7 +4025,7 @@ window.VOCAB = {
    "freq": 6,
    "ex": "Estimation of Income Levels in Individual Buildings Using Satellite Imagery and Household Interview Survey Data.",
    "src": "Estimation of Income Levels in Individual Buildings Using Satellite Imagery and Household Interview Survey Data",
-   "ipa": "ˈɪntərˌvju sərˈveɪ",
+   "ipa": "ˈɪntərˌvju ˈsɜrˌveɪ",
    "note": {
     "d": "Ước tính mức thu nhập của từng ngôi nhà bằng ảnh vệ tinh và dữ liệu khảo sát phỏng vấn hộ gia đình.",
     "y": "Đặt cạnh satellite imagery: một nguồn dữ liệu từ thực địa, một từ trên cao, ghép lại để ước tính thu nhập."
@@ -4108,7 +4108,7 @@ window.VOCAB = {
    "ipa": "ˈɜrbən ˈɡʌvərnəns",
    "note": {
     "d": "Vì vậy, nghiên cứu này trước hết tìm lời đáp cho câu hỏi: xét theo lịch sử, các cuộc khủng hoảng nông nghiệp của Myanmar đã tương tác với quản trị đô thị ra sao kể từ thời thuộc địa?",
-    "y": "«how have agrarian crises interacted with urban governance» — cách chính quyền đô thị vận hành, đặt trong quan hệ với khủng hoảng nông thôn."
+    "y": "«how have Myanmar's agrarian crises interacted with urban governance» — cách chính quyền đô thị vận hành, đặt trong quan hệ với khủng hoảng nông thôn."
    }
   },
   {
@@ -5000,7 +5000,7 @@ window.VOCAB = {
    "ipa": "ˈhæzərd mæp",
    "note": {
     "d": "Ảnh hưởng của bản đồ hiểm hoạ lập bằng GIS tới thái độ của người dân với thiên tai: khảo sát bằng bảng hỏi và phân tích tại Yokohama.",
-    "y": "«GIS based hazard map» — bản đồ hiểm hoạ lập bằng GIS; bài đo xem bản đồ có làm người dân đổi thái độ không."
+    "y": "Tiêu đề gốc viết hoa toàn bộ và gõ nhầm «CIS BASED HAZARD MAP» — đúng ra là GIS; bài đo xem bản đồ hiểm hoạ có làm người dân đổi thái độ không."
    }
   },
   {
@@ -5809,7 +5809,7 @@ window.VOCAB = {
    "freq": 0,
    "ex": "",
    "src": "",
-   "ipa": "ˈoʊvərˌfloʊ"
+   "ipa": "ˌoʊvərˈfloʊ"
   },
   {
    "id": "forecast",
@@ -6029,7 +6029,7 @@ window.VOCAB = {
    "freq": 20,
    "ex": "Methods are based on transfer functions generated to map the distribution of the simulated historical data to that of the observations.",
    "src": "A trend-preserving bias correction – the ISI-MIP approach",
-   "ipa": "ˈsɪmjələt",
+   "ipa": "ˈsɪmjəˌleɪt",
    "note": {
     "d": "Các phương pháp dựa trên hàm chuyển được thiết lập để ánh xạ phân bố của số liệu mô phỏng quá khứ sang phân bố của số liệu quan trắc.",
     "y": "«the simulated historical data» — phân từ quá khứ làm định ngữ: số liệu quá khứ do mô hình sinh ra, đối lập với observations."
@@ -6317,7 +6317,7 @@ window.VOCAB = {
    "freq": 7,
    "ex": "This paper uses historical fluctuations in temperature within countries to identify its effects on aggregate economic outcomes.",
    "src": "Temperature Shocks and Economic Growth: Evidence from the Last Half Century",
-   "ipa": "ˈæɡrəɡət",
+   "ipa": "ˈæɡrəɡeɪt",
    "note": {
     "d": "Bài báo dùng biến động nhiệt độ trong quá khứ ở từng quốc gia để xác định ảnh hưởng của nhiệt độ lên các chỉ tiêu kinh tế tổng hợp.",
     "y": "Ở đây là tính từ đứng trước outcomes, nghĩa đã gộp chung — không phải động từ."
@@ -7241,7 +7241,7 @@ window.VOCAB = {
    "freq": 28,
    "ex": "The model was calibrated with observed discharge data for a 2011 flooding event and validated for flooding events in 2014 and 2015.",
    "src": "Consideration of the rainfall-runoff-inundation (RRI) model for flood mapping in a deltaic area of Myanmar",
-   "ipa": "dɪsˈtʃɑrdʒ",
+   "ipa": "ˈdɪsˌtʃɑrdʒ",
    "note": {
     "d": "Mô hình được hiệu chỉnh bằng số liệu lưu lượng thực đo của trận ngập năm 2011 và được kiểm định với các trận ngập năm 2014 và 2015.",
     "y": "Ở đây là lưu lượng nước qua mặt cắt sông, đơn vị m³/s; không phải nghĩa «xả thải»."
@@ -7708,7 +7708,7 @@ window.VOCAB = {
    "ipa": "ˈwɔtər ˈmænədʒmənt",
    "note": {
     "d": "Kết quả của chúng tôi cho thấy việc quản lý nước ở phần giữa lưu vực Nam Xong cần được cân nhắc kỹ lưỡng.",
-    "y": "«water management in the middle part of the watershed» — quản lý nước ở đoạn giữa lưu vực, nơi kết quả cho thấy có vấn đề."
+    "y": "«water management in the middle part of the Nam Xong watershed» — quản lý nước ở đoạn giữa lưu vực, nơi kết quả cho thấy có vấn đề."
    }
   },
   {
@@ -8121,7 +8121,7 @@ window.VOCAB = {
    "freq": 2,
    "ex": "The simulation shows that the Bago River discharge will increase for all three future periods under both scenarios.",
    "src": "Projecting the Impact of Climate Change on Temperature, Precipitation, and Discharge in the Bago River Basin",
-   "ipa": "ˈrɪvər dɪsˈtʃɑrdʒ",
+   "ipa": "ˈrɪvər ˈdɪsˌtʃɑrdʒ",
    "note": {
     "d": "Mô phỏng cho thấy lưu lượng sông Bago sẽ tăng trong cả ba thời kỳ tương lai, ở cả hai kịch bản.",
     "y": "«the Bago River discharge will increase» — lưu lượng sông, kết quả chính mà mô phỏng đưa ra."

@@ -13,7 +13,9 @@ màn hình chính". App cài được như app thật và **chạy offline** sau
 - **520 từ / cụm từ** chia 6 chặng: Thủy văn · Lũ lụt · Khí hậu · Thiên tai & Xã hội ·
   GIS-Viễn thám · Tiếng Anh học thuật.
 - **513 từ có câu ví dụ thật** trích thẳng từ abstract của 261 bài báo, kèm tên bài nguồn.
-- **Phiên âm IPA cho cả 520 từ**, lấy từ CMU Pronouncing Dictionary chứ không đoán máy móc.
+- **Phiên âm IPA cho cả 520 từ**, lấy từ CMU Pronouncing Dictionary chứ không đoán máy móc,
+  và chọn cách đọc theo từ loại của thẻ — `present` (v) là /priˈzɛnt/ chứ không phải
+  /ˈprɛzənt/ của danh từ "món quà".
 - **Giải nghĩa tiếng Việt cho từng câu ví dụ:** 357 bản dịch (mỗi câu một lần) và 513 ghi
   chú chỉ rõ từ trọng tâm nằm ở đâu trong câu, đi với từ nào — kể cả những chỗ bẫy như
   `relief` trong câu địa hình không hề mang nghĩa "cứu trợ".

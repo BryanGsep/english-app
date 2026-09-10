@@ -161,7 +161,8 @@ a{color:inherit;text-decoration:none}
 
 /* flashcard */
 .flip{perspective:1000px;cursor:pointer}
-.flip-inner{position:relative;transition:transform .5s cubic-bezier(.3,.9,.3,1);transform-style:preserve-3d}
+.flip-inner{position:relative;transform-style:preserve-3d;
+  transition:transform .5s cubic-bezier(.3,.9,.3,1),height .35s ease}
 .flip.is-flipped .flip-inner{transform:rotateY(180deg)}
 .card-face{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
   padding:26px 18px;min-height:230px;display:flex;flex-direction:column;
@@ -285,6 +286,16 @@ a.plan-row::after{content:'›';color:var(--micro);margin-left:2px}
 .reveal.compact .reveal-vi{font-size:14px}
 .reveal-list{display:flex;flex-direction:column;gap:8px}
 .reveal-next{margin-top:2px}
+/* nut hanh dong noi day man hinh khi noi dung dai hon mot man */
+.stick{position:fixed;left:0;right:0;margin:0 auto;z-index:40;
+  bottom:calc(12px + env(safe-area-inset-bottom));
+  width:calc(100% - 32px);max-width:488px}
+.btn.stick,.stick>.btn{box-shadow:0 10px 26px -8px rgba(216,36,111,.75)}
+/* dai mo phia sau: chu chim dan xuong duoi nut chu khong bi cat ngang */
+.stick::before{content:'';position:absolute;z-index:-1;pointer-events:none;
+  left:-16px;right:-16px;top:-26px;bottom:calc(-16px - env(safe-area-inset-bottom));
+  background:linear-gradient(180deg,rgba(255,243,248,0),var(--bg) 60%)}
+.stick-pad{height:64px;flex:0 0 auto}
 
 /* ket qua */
 .result{background:var(--card);border:1px solid var(--line);border-radius:var(--r);

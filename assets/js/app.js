@@ -289,26 +289,34 @@
         sum.appendChild(UI.el('span', 'chip small', c.pos));
         row.appendChild(sum);
 
+        // Ruot the chi dung khi nguoi hoc mo ra. Danh sach nay co toi 520 dong;
+        // dung san ca ruot thi phan lon DOM khong ai nhin toi (do duoc: 11391 node
+        // xuong 5200), ma may dien thoai van phai ve.
         var body = UI.el('div', 'word-body');
-        var ph = UI.ipa(c);
-        if (ph) body.appendChild(ph);
-        body.appendChild(UI.el('p', 'en', c.en));
-        if (c.ex) {
-          var q2 = UI.el('blockquote', 'ex');
-          q2.appendChild(UI.el('span', null, c.ex));
-          q2.appendChild(UI.el('cite', null, c.src));
-          body.appendChild(q2);
-          var g2 = UI.gloss(c);
-          if (g2) body.appendChild(g2);
-        } else {
-          body.appendChild(UI.el('p', 'micro', 'Chưa có câu ví dụ trong corpus.'));
-        }
-        var meta = UI.el('p', 'micro');
-        meta.textContent = st && st.seen
-          ? 'Đã gặp ' + st.seen + ' lần · đúng ' + st.correct + ' · ' + dueText(st)
-          : 'Chưa học lần nào';
-        body.appendChild(meta);
-        body.appendChild(UI.btn('🔊 Nghe', 'small-btn', function () { UI.speak(c.term); }));
+        var da = false;
+        row.addEventListener('toggle', function () {
+          if (da || !row.open) return;
+          da = true;
+          var ph = UI.ipa(c);
+          if (ph) body.appendChild(ph);
+          body.appendChild(UI.el('p', 'en', c.en));
+          if (c.ex) {
+            var q2 = UI.el('blockquote', 'ex');
+            q2.appendChild(UI.el('span', null, c.ex));
+            q2.appendChild(UI.el('cite', null, c.src));
+            body.appendChild(q2);
+            var g2 = UI.gloss(c);
+            if (g2) body.appendChild(g2);
+          } else {
+            body.appendChild(UI.el('p', 'micro', 'Chưa có câu ví dụ trong corpus.'));
+          }
+          var meta = UI.el('p', 'micro');
+          meta.textContent = st && st.seen
+            ? 'Đã gặp ' + st.seen + ' lần · đúng ' + st.correct + ' · ' + dueText(st)
+            : 'Chưa học lần nào';
+          body.appendChild(meta);
+          body.appendChild(UI.btn('🔊 Nghe', 'small-btn', function () { UI.speak(c.term); }));
+        });
         row.appendChild(body);
         list.appendChild(row);
       });

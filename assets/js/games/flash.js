@@ -41,21 +41,34 @@
         inner.appendChild(front); inner.appendChild(back);
         scene.appendChild(inner);
 
-        var actions = UI.el('div', 'row gap hidden');
+        // Mat sau co the cao gan 500px, day hai nut xuong sat day man 640px. Cho chung
+        // nam co dinh o day — vua khong bao gio khuat, vua dung tam ngon cai.
+        var actions = UI.el('div', 'row gap stick hidden');
         actions.appendChild(UI.btn('Chưa nhớ', 'wide danger', function () { grade(false); }));
         actions.appendChild(UI.btn('Nhớ rồi', 'wide primary', function () { grade(true); }));
+        var pad = UI.el('div', 'stick-pad hidden');
 
         var flipped = false;
         scene.addEventListener('click', function () {
           if (flipped) return;
           flipped = true;
+          // Mat sau dai hon mat truoc (them ban dich cau) nen phai noi khung ra cho vua,
+          // khong thi chu bi nhet vao o cao ~230px roi phai cuon BEN TRONG the.
+          // Do bang cach tha mat sau ve dong chay trong mot nhip: luc dang bi
+          // dinh vao khung cu thi scrollHeight con bi flex ep, do bao nhieu cung thieu.
+          back.style.position = 'static';
+          var can = back.offsetHeight;
+          back.style.position = '';
+          if (can > inner.offsetHeight) inner.style.height = can + 'px';
           scene.classList.add('is-flipped');
           actions.classList.remove('hidden');
+          pad.classList.remove('hidden');
           UI.haptic();
         });
 
         root.appendChild(scene);
         root.appendChild(actions);
+        root.appendChild(pad);
         UI.speak(card.term);
       }
 

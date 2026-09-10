@@ -112,6 +112,18 @@ Hai thứ này trả lời đúng một câu hỏi của người học: *đọc
   nằm trong bảng `EXTRA` ngay trong tool, phần lớn ghép từ các từ CÓ trong từ điển
   (`baseflow` = `base` + `flow`), số còn lại lấy theo từ điển Anh chuẩn — mỗi dòng có chú
   thích nguồn. Thêm term mới mà từ điển không có thì **để trống**, đừng bịa.
+- **Một từ có nhiều cách đọc thì phải chọn theo `pos` của thẻ**, 154/520 term rơi vào
+  trường hợp này. Lấy bừa cách đầu tiên là sai thẳng nghĩa: thẻ `present` (v, "trình bày")
+  ra `/ˈprɛzənt/` — đó là danh từ "món quà". Ba luật trong `build_ipa.py`:
+  1. `STRESS_BY_POS` — bảng tay 12 từ vừa là danh từ vừa là động từ, trọng âm đổi chỗ
+     (present, conduct, address, project, contrast, discharge, survey, research, impact…).
+     **Không** thay bằng luật "danh từ thì trọng âm trước": `emergency`, `evacuation`,
+     `information` cũng có nhiều cách đọc nhưng không phải cặp lệch trọng âm, luật đó
+     làm hỏng cả ba.
+  2. Từ kết thúc `-ate`: động từ đọc `/-eɪt/`, danh từ và tính từ đọc `/-ət/`
+     (to ESTiMATE vs an ESTimate). Đây là quy tắc thật của tiếng Anh, không phải mẹo.
+  3. Cùng vị trí trọng âm thì lấy cách đầu tiên của từ điển, nhưng bỏ cách có dấu nhấn
+     phụ thừa ở đầu từ (`require`: lấy /rɪˈkwaɪr/ chứ không /ˌriˈkwaɪər/).
 - **Giải nghĩa** nằm ở `data/notes.seed.json`, do người viết:
   - `dich[<khoá câu>]` — bản dịch tiếng Việt của câu ví dụ. Khoá là `sha1(câu)[:8]`,
     **theo câu chứ không theo thẻ**: 513 thẻ chỉ dùng 357 câu khác nhau, dịch một lần dùng chung.
@@ -124,6 +136,10 @@ Hai thứ này trả lời đúng một câu hỏi của người học: *đọc
   Bảng sửa sai, mặt sau thẻ lật và danh sách từ đều dùng chung hai hàm này.
 - **Điền vào câu dừng lại cả khi trả lời ĐÚNG** để đọc phần dịch — thứ đang học ở kiểu chơi
   đó là nghĩa của cả câu, không phải một từ. Thẻ chưa có bản dịch thì vẫn chạy tiếp như cũ.
+- **Ghi chú không được bịa chữ tiếng Anh.** `tools/check.py` đối chiếu từng đoạn đặt trong
+  `«…»` với chính câu ví dụ của thẻ (chuẩn hoá gạch nối/nháy Unicode, cho phép dấu lược
+  `...`). Hiện có 338 trích dẫn được đối chiếu tự động. Muốn nhận xét mà không trích thì
+  đừng dùng `«»`.
 
 ## 5. Hợp đồng game
 
@@ -166,6 +182,17 @@ window.Games.register({
 - **Gợi ý thì không được tính là nhớ.** Kiểu chơi nào cho mở đáp án dần (xếp chữ) phải trả
   `correct: false` khi người học đã dùng gợi ý, và nói thẳng trên màn hình là từ sẽ quay lại
   sớm. Chấm đúng cho một lượt phải mở chữ mới xong sẽ đẩy thẻ lên bậc SRS cao hơn thực lực.
+- **Nút hành động phải nằm trong màn hình 360×640.** Bảng sửa sai kèm giải nghĩa cao tới
+  ~700px, mặt sau thẻ lật cao tới ~480px — nút "Tiếp tục" và "Nhớ rồi/Chưa nhớ" bị đẩy
+  xuống dưới đáy, lần nào người học cũng phải cuộn đi tìm (đo được: đáy nút ở 708px trên
+  màn 640px, và **lỗi này có từ trước khi thêm giải nghĩa**). Dùng class `stick` +
+  một `div.stick-pad` chừa chỗ; `.stick` có sẵn dải mờ phía sau để chữ chìm dần chứ không
+  bị cắt ngang. Đừng chống bằng cách rút ngắn nội dung.
+- **Thẻ lật phải tự nới khung khi lật.** `.flip-back` là `position:absolute` nên bị đóng
+  khung theo mặt trước; mặt sau dài hơn thì chữ bị nhét vào ô cũ rồi phải cuộn BÊN TRONG
+  thẻ. Đo bằng cách thả mặt sau về dòng chảy một nhịp (`position:static`) rồi đọc
+  `offsetHeight` — đọc `scrollHeight` lúc còn bị flex ép thì đo bao nhiêu cũng thiếu
+  (231 → 323 → 369 → vẫn chưa đủ).
 - Game phải tự dọn `setInterval`/listener khi bị unmount (`root` bị xoá).
 - **Trả lời sai thì phải hiện đáp án đúng.** Dùng `UI.correction(root, card, next)` (chèn bảng
   sửa sai + nút "Tiếp tục", người học tự bấm đi tiếp) hoặc `UI.reveal(card, label, compact)`
@@ -215,6 +242,10 @@ sách của `python3 tools/notes_todo.py` → chạy lại `build_vocab.py` đ�
 `vocab.js` nặng lên gần gấp đôi (242 KB → 445 KB) vì hai trường này; nó nằm trong `ASSETS`
 của `sw.js` nên **nhớ tăng `CACHE`**.
 
+Danh sách 520 từ chỉ dựng ruột thẻ **khi người học mở thẻ ra** (`details` → sự kiện
+`toggle`). Dựng sẵn cả 520 ruột thì DOM lên 11391 node mà 99% không ai nhìn tới; dựng theo
+yêu cầu còn 5212 node — nhẹ hơn cả bản chưa có giải nghĩa (8306).
+
 **Quét lại corpus:** `tools/fetch_corpus.py` (OpenAlex) → `tools/extract_terms.py`
 (ứng viên thuật ngữ) → thêm term vào seed → `build_vocab.py`.
 
@@ -223,7 +254,7 @@ của `sw.js` nên **nhớ tăng `CACHE`**.
 
 | # | Bước | Bắt lỗi gì |
 |---|------|-----------|
-| 1 | `tools/check.py` | id trùng, thiếu `vi`, deck lạ, ví dụ không nguồn, script thiếu/sai thứ tự trong `index.html`, game tự ghi SRS |
+| 1 | `tools/check.py` | id trùng, thiếu `vi`, deck lạ, ví dụ không nguồn, **ghi chú trích dẫn tiếng Anh không có thật trong câu**, script thiếu/sai thứ tự trong `index.html`, game tự ghi SRS |
 | 2 | `node --check` | lỗi cú pháp JS |
 | 3 | `tools/sw_test.js` | service worker cache thiếu file, không dọn cache cũ, không đọc được khi mất mạng |
 | 4 | `tools/upgrade_test.js` | tiến độ của người dùng cũ có sống sót qua bản mới không |
