@@ -13,14 +13,21 @@ màn hình chính". App cài được như app thật và **chạy offline** sau
 - **520 từ / cụm từ** chia 6 chặng: Thủy văn · Lũ lụt · Khí hậu · Thiên tai & Xã hội ·
   GIS-Viễn thám · Tiếng Anh học thuật.
 - **513 từ có câu ví dụ thật** trích thẳng từ abstract của 261 bài báo, kèm tên bài nguồn.
+- **Phiên âm IPA cho cả 520 từ**, lấy từ CMU Pronouncing Dictionary chứ không đoán máy móc.
+- **Giải nghĩa tiếng Việt cho từng câu ví dụ:** 357 bản dịch (mỗi câu một lần) và 513 ghi
+  chú chỉ rõ từ trọng tâm nằm ở đâu trong câu, đi với từ nào — kể cả những chỗ bẫy như
+  `relief` trong câu địa hình không hề mang nghĩa "cứu trợ".
 - **8 kiểu chơi:** lật thẻ, trắc nghiệm, dịch ngược, nghe từ, xếp chữ, điền vào câu thật,
   nối cặp, chớp nhoáng 45 giây. Chế độ "Học ngay" tự trộn nhiều game trong một phiên
   (trừ chớp nhoáng — game tính giờ cần nhiều từ nên chỉ chơi riêng, xin 24 từ mỗi lượt).
   Mọi từ được phát trong một phiên đều được hỏi đúng một lần; bộ kiểm tra đo và ép điều này.
 - **Danh sách từ lọc theo trạng thái:** Tất cả · Cần ôn · Đang học · Đã thuộc · Chưa học,
   mỗi từ có nhãn trạng thái và ngày ôn kế tiếp. Bấm thẳng từ ô thống kê ở trang chủ.
-- **Sai là hiện đáp án ngay:** bảng sửa sai có từ, nghĩa, định nghĩa tiếng Anh và câu ví dụ
-  thật; người học tự bấm "Tiếp tục" nên không bị cuốn đi khi chưa kịp đọc.
+- **Sai là hiện đáp án ngay:** bảng sửa sai có từ, phiên âm, nghĩa, định nghĩa tiếng Anh,
+  câu ví dụ thật và bản dịch của câu đó; người học tự bấm "Tiếp tục" nên không bị cuốn đi
+  khi chưa kịp đọc. Riêng "Điền vào câu" thì trả lời đúng cũng dừng lại để đọc nghĩa cả câu.
+- **Xếp chữ có nút gợi ý:** mỗi lần bấm mở thêm một chữ cái đúng (và tự trả lại những ô đã
+  đặt sai). Đổi lại, từ nào dùng gợi ý thì không được tính là đã nhớ và sẽ quay lại sớm.
 - **Lặp ngắt quãng (SM-2 rút gọn):** từ sai quay lại ngay, từ đúng giãn dần 1→3→7→16→35 ngày.
 - **Lộ trình + tiến độ:** vòng tròn phần trăm mỗi chặng, chuỗi ngày học, biểu đồ 14 ngày,
   lịch ôn 7 ngày tới. Tất cả lưu trong localStorage, có nút xuất/nhập để chuyển máy.

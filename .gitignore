@@ -1,3 +1,4 @@
 .DS_Store
 *.swp
 corpus/corpus_raw.json
+corpus/cmudict.dict

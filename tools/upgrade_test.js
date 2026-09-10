@@ -87,7 +87,8 @@ setTimeout(function () {
   var oldRaw = oldCtx.storage._raw();
   var oldState = JSON.parse(oldRaw);
   ok(!!oldRaw, 'ban cu ghi duoc localStorage (' + oldRaw.length + ' byte)');
-  ok(!('badges' in oldState), 'ban cu khong co truong badges (dung nhu du kien)');
+  // Ban moi duoc phep them truong, nhung truong them vao phai RONG — nguoi dung cu
+  // khong tu dung co huy hieu hay lich su ma ho chua tung lam.
 
   /* ---------- 2. Nap chuoi do vao ban MOI ---------- */
 
@@ -109,7 +110,13 @@ setTimeout(function () {
     ok(JSON.stringify(neoState[k]) === JSON.stringify(oldState[k]),
        'giu nguyen truong "' + k + '"');
   });
-  ok(JSON.stringify(neoState.badges) === '{}', 'them truong badges rong, khong dung toi cai khac');
+  var added = Object.keys(neoState).filter(function (k) { return !(k in oldState); });
+  log.push('     ban moi them truong: ' + (added.join(', ') || 'khong co'));
+  added.forEach(function (k) {
+    var v = neoState[k];
+    var empty = v && typeof v === 'object' && !Object.keys(v).length;
+    ok(empty, 'truong moi "' + k + '" duoc bu vao dang rong, khong dung toi cai khac');
+  });
   ok(neoState.streak === 9, 'chuoi ngay hoc van la 9 (khong bi migrate xoa)');
   ok(Object.keys(neoState.cards).length === ids.length,
      'con du ' + ids.length + ' the co tien do');

@@ -66,7 +66,23 @@
     if (navigator.vibrate) { try { navigator.vibrate(ms || 12); } catch (e) {} }
   }
 
+  // macOS tra ve ca giong "vui" (Albert, Bad News, Bubbles...) truoc giong that.
+  // Lay bua giong en dau tien thi nguoi hoc nghe phai giong meo keu.
+  var GOOD = /^(samantha|alex|daniel|karen|moira|tessa|serena|allison|ava|susan|fiona|google us english|google uk english|microsoft (zira|david|mark|hazel))/i;
+  var NOVELTY = /^(albert|bad news|bahh|bells|boing|bubbles|cellos|deranged|good news|jester|junior|kathy|organ|superstar|trinoids|whisper|wobble|zarvox|grandma|grandpa|rocko|shelley|sandy|eddy|flo|reed|rishi)/i;
+
   var voice = null;
+  function pickVoice() {
+    if (voice) return voice;
+    var vs = (window.speechSynthesis && window.speechSynthesis.getVoices()) || [];
+    var en = vs.filter(function (v) { return /^en([-_]|$)/i.test(v.lang || ''); });
+    var i;
+    for (i = 0; i < en.length; i++) if (GOOD.test(en[i].name)) return (voice = en[i]);
+    for (i = 0; i < en.length; i++) if (en[i]["default"]) return (voice = en[i]);
+    for (i = 0; i < en.length; i++) if (!NOVELTY.test(en[i].name)) return (voice = en[i]);
+    return (voice = en[0] || null);
+  }
+
   function speak(text) {
     if (!window.Store.get().tts || !window.speechSynthesis) return false;
     try {
@@ -74,19 +90,40 @@
       var u = new SpeechSynthesisUtterance(text);
       u.lang = 'en-US';
       u.rate = 0.9;
-      if (!voice) {
-        var vs = window.speechSynthesis.getVoices() || [];
-        for (var i = 0; i < vs.length; i++) {
-          if (/^en[-_]/i.test(vs[i].lang)) { voice = vs[i]; break; }
-        }
-      }
-      if (voice) u.voice = voice;
+      var v = pickVoice();
+      if (v) u.voice = v;
       window.speechSynthesis.speak(u);
       return true;
     } catch (e) { return false; }
   }
   if (window.speechSynthesis) {
     window.speechSynthesis.onvoiceschanged = function () { voice = null; };
+  }
+
+  /** Phien am IPA cua the — khong co thi tra ve null. */
+  function ipa(card) {
+    if (!card || !card.ipa) return null;
+    return el('span', 'ipa', '/' + card.ipa + '/');
+  }
+
+  /**
+   * Khoi giai nghia tieng Viet cho cau vi du: ban dich + vai tro cua tu trong tam.
+   * Noi dung nam trong card.note (sinh tu data/notes.seed.json). Thieu thi tra ve null,
+   * moi cho goi phai chiu duoc gia tri null.
+   */
+  function gloss(card) {
+    var n = card && card.note;
+    if (!n || (!n.d && !n.y)) return null;
+    var box = el('div', 'gloss');
+    if (n.d) {
+      box.appendChild(el('p', 'gloss-label', 'Câu này nói gì'));
+      box.appendChild(el('p', 'gloss-d', n.d));
+    }
+    if (n.y) {
+      box.appendChild(el('p', 'gloss-label', 'Từ trọng tâm trong câu'));
+      box.appendChild(el('p', 'gloss-y', n.y));
+    }
+    return box;
   }
 
   /** Danh dau dung/sai tren mot nut lua chon. */
@@ -122,6 +159,8 @@
     head.appendChild(btn('🔊', 'icon-btn', function () { speak(card.term); }));
     box.appendChild(head);
 
+    var ph = ipa(card);
+    if (ph) box.appendChild(ph);
     box.appendChild(el('p', 'reveal-vi', card.vi));
     if (compact) return box;
     if (card.en) box.appendChild(el('p', 'en', card.en));
@@ -131,6 +170,8 @@
       q.appendChild(el('cite', null, card.src));
       box.appendChild(q);
     }
+    var g = gloss(card);
+    if (g) box.appendChild(g);
     return box;
   }
 
@@ -138,8 +179,9 @@
    * Dan bang sua sai + nut di tiep vao cuoi man choi.
    * next(): game goi de sang cau ke tiep.
    */
-  function correction(root, card, next, label) {
+  function correction(root, card, next, label, good) {
     var box = reveal(card, label);
+    if (good) box.classList.add('good');
     root.appendChild(box);
     var go = btn('Tiếp tục →', 'wide primary reveal-next', next);
     root.appendChild(go);
@@ -150,6 +192,7 @@
   window.UI = {
     el: el, clear: clear, toast: toast, bar: bar, ring: ring, btn: btn,
     speak: speak, haptic: haptic, mark: mark, blank: blank,
+    ipa: ipa, gloss: gloss, voice: pickVoice,
     reveal: reveal, correction: correction
   };
 })();

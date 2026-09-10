@@ -21,6 +21,8 @@
         var front = UI.el('div', 'flip-face card-face');
         front.appendChild(UI.el('span', 'pos', card.pos));
         front.appendChild(UI.el('h2', 'term', card.term));
+        var fp = UI.ipa(card);
+        if (fp) front.appendChild(fp);
         var sp = UI.btn('🔊', 'icon-btn', function (e) { e.stopPropagation(); UI.speak(card.term); });
         front.appendChild(sp);
         front.appendChild(UI.el('p', 'hint', 'Chạm để lật'));
@@ -34,6 +36,8 @@
           q.appendChild(UI.el('cite', null, card.src));
           back.appendChild(q);
         }
+        var g = UI.gloss(card);
+        if (g) back.appendChild(g);
         inner.appendChild(front); inner.appendChild(back);
         scene.appendChild(inner);
 

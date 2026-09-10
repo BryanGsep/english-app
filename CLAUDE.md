@@ -42,6 +42,9 @@ assets/js/
   app.js              # router hash, màn hình chính, khởi động
 data/vocab.js         # window.VOCAB — SINH RA, không sửa tay
 data/vocab.seed.json  # nguồn sự thật do người viết (term + nghĩa tiếng Việt)
+data/notes.seed.json  # nguồn sự thật do người viết (bản dịch câu + ghi chú từ trọng tâm)
+data/ipa.json         # SINH RA bởi tools/build_ipa.py — phiên âm IPA từng term
+corpus/cmudict.dict   # TẢI VỀ, không commit — từ điển phát âm CMU
 corpus/corpus.json    # 261 tài liệu quét từ OpenAlex
 tools/*.py            # pipeline dữ liệu
 tools/*.sh|*.html|*.js# bộ kiểm tra (mục 7)
@@ -89,11 +92,38 @@ card = {
   deck,      // deck.id
   freq,      // số lần xuất hiện trong corpus (dùng để xếp thứ tự học)
   ex,        // câu ví dụ thật từ abstract ("" nếu không tìm được)
-  src        // tiêu đề bài báo chứa câu ví dụ ("" nếu ex rỗng)
+  src,       // tiêu đề bài báo chứa câu ví dụ ("" nếu ex rỗng)
+  ipa,       // phiên âm IPA kiểu Mỹ (vắng nếu từ điển không có — code phải chịu được)
+  note       // { d: bản dịch câu ex, y: từ trọng tâm nằm ở đâu trong câu } — có thể vắng
 }
 ```
 
+**Ba trường `ipa` / `note` / `freq` là bù thêm.** Mọi chỗ đọc chúng phải chịu được giá trị
+vắng mặt (`UI.ipa` và `UI.gloss` trả về `null`), vì thẻ mới thêm chưa kịp có ghi chú.
+
 **Quy tắc `id`:** một khi đã phát hành thì không đổi. Sửa chính tả `term` thì giữ nguyên `id`.
+
+## 4b. Phiên âm & giải nghĩa tiếng Việt
+
+Hai thứ này trả lời đúng một câu hỏi của người học: *đọc thế nào* và *câu này nghĩa là gì*.
+
+- **Phiên âm** sinh bằng `tools/build_ipa.py` từ **CMU Pronouncing Dictionary** — từ điển
+  phát âm thật, giấy phép BSD. Không đoán chữ-sang-âm. 19 từ chuyên ngành CMUdict không có
+  nằm trong bảng `EXTRA` ngay trong tool, phần lớn ghép từ các từ CÓ trong từ điển
+  (`baseflow` = `base` + `flow`), số còn lại lấy theo từ điển Anh chuẩn — mỗi dòng có chú
+  thích nguồn. Thêm term mới mà từ điển không có thì **để trống**, đừng bịa.
+- **Giải nghĩa** nằm ở `data/notes.seed.json`, do người viết:
+  - `dich[<khoá câu>]` — bản dịch tiếng Việt của câu ví dụ. Khoá là `sha1(câu)[:8]`,
+    **theo câu chứ không theo thẻ**: 513 thẻ chỉ dùng 357 câu khác nhau, dịch một lần dùng chung.
+  - `y[<id thẻ>]` — một câu nói rõ từ trọng tâm nằm ở đâu trong câu đó và đi với từ nào.
+    Theo thẻ, vì cùng một câu nhưng mỗi thẻ soi một từ khác nhau.
+  - Đây là chỗ duy nhất được nói cái mà bản thân câu tiếng Anh không nói. Nó **giải thích**
+    câu thật, không phải chế thêm câu mới — mục 1.5 vẫn nguyên vẹn.
+- `python3 tools/notes_todo.py` liệt kê những câu/thẻ còn thiếu ghi chú, gom theo câu.
+- Hiển thị: `UI.ipa(card)` và `UI.gloss(card)`; cả hai trả `null` nếu thiếu dữ liệu.
+  Bảng sửa sai, mặt sau thẻ lật và danh sách từ đều dùng chung hai hàm này.
+- **Điền vào câu dừng lại cả khi trả lời ĐÚNG** để đọc phần dịch — thứ đang học ở kiểu chơi
+  đó là nghĩa của cả câu, không phải một từ. Thẻ chưa có bản dịch thì vẫn chạy tiếp như cũ.
 
 ## 5. Hợp đồng game
 
@@ -133,6 +163,9 @@ window.Games.register({
   sai một lần là tính sai cả thẻ. App vẫn gộp lần nữa như lưới an toàn, nhưng ghi trùng
   sẽ thổi phồng khoảng ôn của SRS (4 lượt đúng trong 45 giây = thẻ bị đánh dấu "đã thuộc").
   App là nơi duy nhất ghi kết quả vào SRS. Game không được gọi `Store.save` hay `SRS.grade`.
+- **Gợi ý thì không được tính là nhớ.** Kiểu chơi nào cho mở đáp án dần (xếp chữ) phải trả
+  `correct: false` khi người học đã dùng gợi ý, và nói thẳng trên màn hình là từ sẽ quay lại
+  sớm. Chấm đúng cho một lượt phải mở chữ mới xong sẽ đẩy thẻ lên bậc SRS cao hơn thực lực.
 - Game phải tự dọn `setInterval`/listener khi bị unmount (`root` bị xoá).
 - **Trả lời sai thì phải hiện đáp án đúng.** Dùng `UI.correction(root, card, next)` (chèn bảng
   sửa sai + nút "Tiếp tục", người học tự bấm đi tiếp) hoặc `UI.reveal(card, label, compact)`
@@ -175,6 +208,12 @@ Sửa hằng số SRS thì phải cập nhật mục này cùng lúc.
 
 **Đổi từ vựng:** sửa `data/vocab.seed.json` → chạy `python3 tools/build_vocab.py` →
 kiểm tra `data/vocab.js` → thử trên trình duyệt. **Không bao giờ sửa tay `data/vocab.js`.**
+
+**Thêm phiên âm / ghi chú:** `python3 tools/build_ipa.py` (sinh `data/ipa.json`, lần đầu tự
+tải CMUdict về `corpus/cmudict.dict`) → viết bổ sung vào `data/notes.seed.json` theo danh
+sách của `python3 tools/notes_todo.py` → chạy lại `build_vocab.py` để trộn vào `vocab.js`.
+`vocab.js` nặng lên gần gấp đôi (242 KB → 445 KB) vì hai trường này; nó nằm trong `ASSETS`
+của `sw.js` nên **nhớ tăng `CACHE`**.
 
 **Quét lại corpus:** `tools/fetch_corpus.py` (OpenAlex) → `tools/extract_terms.py`
 (ứng viên thuật ngữ) → thêm term vào seed → `build_vocab.py`.

@@ -41,7 +41,18 @@
             var ok = o.id === card.id;
             UI.mark(b, ok);
             results.push({ id: card.id, correct: ok, ms: Date.now() - t0 });
-            if (ok) { setTimeout(function () { i++; render(); }, 450); return; }
+            if (ok) {
+              // Dung roi van dung lai de doc nghia cua ca cau — do moi la cai
+              // dang hoc o kieu choi nay. Bai nao chua co ban dich thi di tiep luon.
+              if (window.UI.gloss(card)) {
+                Array.prototype.forEach.call(list.children, function (n) { n.disabled = true; });
+                UI.correction(root, card, function () { i++; render(); },
+                              'Đúng rồi — câu này nghĩa là gì', true);
+              } else {
+                setTimeout(function () { i++; render(); }, 450);
+              }
+              return;
+            }
             Array.prototype.forEach.call(list.children, function (n) {
               if (n.textContent === card.term) n.classList.add('ok');
             });

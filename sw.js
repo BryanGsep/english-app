@@ -1,7 +1,7 @@
 /* sw.js — cho phep hoc offline sau lan mo dau tien.
    Chi chay tren http/https (GitHub Pages). Mo bang file:// thi app van chay, khong co SW.
    Doi bat ky file nao trong ASSETS thi PHAI tang CACHE. */
-var CACHE = 'esp-trainer-v7';
+var CACHE = 'esp-trainer-v8';
 var ASSETS = [
   './',
   './index.html',

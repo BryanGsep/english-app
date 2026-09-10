@@ -1,11 +1,26 @@
 #!/usr/bin/env python3
 """Sinh data/vocab.js tu data/vocab.seed.json + corpus/corpus.json.
 KHONG sua tay data/vocab.js. Xem CLAUDE.md muc 7."""
-import json, re, os, sys
+import json, re, os, sys, hashlib
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 seed = json.load(open(os.path.join(ROOT, "data/vocab.seed.json"), encoding="utf-8"))
 corpus = json.load(open(os.path.join(ROOT, "corpus/corpus.json"), encoding="utf-8"))
+
+def side(name, default):
+    """Doc file phu (phien am, ghi chu). Thieu thi bo qua, khong lam hong build."""
+    path = os.path.join(ROOT, name)
+    if not os.path.exists(path):
+        print("  ! thieu %s - bo qua" % name)
+        return default
+    return json.load(open(path, encoding="utf-8"))
+
+IPA = side("data/ipa.json", {})
+NOTES = side("data/notes.seed.json", {"dich": {}, "y": {}})
+
+def skey(sentence):
+    """Khoa on dinh cua mot cau vi du - khong doi khi the doi id."""
+    return hashlib.sha1(sentence.encode("utf-8")).hexdigest()[:8]
 
 def slug(t):
     return re.sub(r"[^a-z0-9]+", "-", t.lower()).strip("-")
@@ -77,11 +92,23 @@ for c in seed["cards"]:
             best = (score, s, title)
     if best is None:
         warn.append("KHONG co vi du: " + c["term"])
-    cards.append({
+    ex = best[1] if best else ""
+    card = {
         "id": cid, "term": c["term"], "pos": c["pos"], "vi": c["vi"],
         "en": c["en"], "deck": c["deck"], "freq": freq,
-        "ex": best[1] if best else "", "src": best[2] if best else "",
-    })
+        "ex": ex, "src": best[2] if best else "",
+    }
+    if IPA.get(c["term"]):
+        card["ipa"] = IPA[c["term"]]
+    d = NOTES["dich"].get(skey(ex)) if ex else None
+    y = NOTES["y"].get(cid)
+    if d or y:
+        card["note"] = {}
+        if d:
+            card["note"]["d"] = d          # ban dich cau vi du
+        if y:
+            card["note"]["y"] = y          # tu trong tam nam o dau trong cau
+    cards.append(card)
 
 cards.sort(key=lambda c: (c["deck"], -c["freq"], c["term"]))
 out = {"decks": seed["decks"], "cards": cards,
@@ -95,5 +122,10 @@ open(os.path.join(ROOT, "data/vocab.js"), "w", encoding="utf-8").write(js)
 
 print("cards: %d | co vi du: %d | freq=0: %d"
       % (len(cards), sum(1 for c in cards if c["ex"]), sum(1 for c in cards if not c["freq"])))
+print("phien am: %d | ban dich cau: %d/%d | ghi chu tu: %d/%d"
+      % (sum(1 for c in cards if c.get("ipa")),
+         sum(1 for c in cards if c.get("note", {}).get("d")),
+         sum(1 for c in cards if c["ex"]),
+         sum(1 for c in cards if c.get("note", {}).get("y")), len(cards)))
 for w in warn:
     print("  !", w)

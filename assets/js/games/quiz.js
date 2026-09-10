@@ -51,6 +51,8 @@
       var q = UI.el('div', 'prompt');
       q.appendChild(UI.el('span', 'pos', card.pos));
       q.appendChild(UI.el('h2', 'term', card.term));
+      var ph = UI.ipa(card);
+      if (ph) q.appendChild(ph);
       q.appendChild(UI.btn('🔊', 'icon-btn', function () { UI.speak(card.term); }));
       return q;
     },

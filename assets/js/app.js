@@ -290,12 +290,16 @@
         row.appendChild(sum);
 
         var body = UI.el('div', 'word-body');
+        var ph = UI.ipa(c);
+        if (ph) body.appendChild(ph);
         body.appendChild(UI.el('p', 'en', c.en));
         if (c.ex) {
           var q2 = UI.el('blockquote', 'ex');
           q2.appendChild(UI.el('span', null, c.ex));
           q2.appendChild(UI.el('cite', null, c.src));
           body.appendChild(q2);
+          var g2 = UI.gloss(c);
+          if (g2) body.appendChild(g2);
         } else {
           body.appendChild(UI.el('p', 'micro', 'Chưa có câu ví dụ trong corpus.'));
         }
