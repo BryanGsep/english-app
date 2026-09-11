@@ -35,7 +35,71 @@
   <script src="assets/js/games/speed.js"></script>
   <script src="assets/js/app.js"></script>
   <script>
-    window.App.start();
+    /* Mot file khong nap duoc — mang chap chon dung luc cap nhat, hay cache cua
+       service worker giu ban hong — lam app chet LANG LE: cac man hinh khac van
+       chay, rieng cho nao dung toi file thieu thi trong tron. Da gap that: thieu
+       art.js thi man "Ket qua" chi con moi cai tieu de.
+       Kiem ngay luc khoi dong, hong thi noi ro va cho nguoi hoc sua bang mot nut. */
+    (function () {
+      var CAN = ['VOCAB', 'Store', 'SRS', 'Data', 'UI', 'Art', 'Celebrate', 'Games', 'App'];
+      var thieu = [];
+      for (var i = 0; i < CAN.length; i++) if (!window[CAN[i]]) thieu.push(CAN[i]);
+
+      if (!thieu.length) {
+        window.App.start();
+      } else {
+        baoHong(thieu);
+      }
+
+      function baoHong(thieu) {
+        var v = document.getElementById('view');
+        while (v.firstChild) v.removeChild(v.firstChild);
+        v.style.cssText = 'max-width:420px;margin:0 auto;padding:24px 18px;font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:#3d2130';
+        add('h1', 'Bản cập nhật tải thiếu file', 'font-size:20px;margin:0 0 12px');
+        add('p', 'App vẫn mở được nhưng một vài màn hình sẽ trống, ví dụ màn Kết quả. ' +
+                 'Chạm nút bên dưới để tải lại bản đầy đủ.', 'margin:0 0 8px');
+        add('p', 'Tiến độ học của bạn KHÔNG bị xoá — nút này chỉ dọn bản lưu tạm của trang.',
+            'margin:0 0 18px;color:#8a6076;font-size:13.5px');
+        var nut = document.createElement('button');
+        nut.textContent = 'Tải lại bản mới';
+        nut.style.cssText = 'width:100%;min-height:48px;border:0;border-radius:14px;' +
+          'background:#d8246f;color:#fff;font:600 16px/1 inherit;cursor:pointer';
+        nut.onclick = function () { nut.disabled = true; nut.textContent = 'Đang tải lại…'; donDep(); };
+        v.appendChild(nut);
+        add('p', 'Thiếu: ' + thieu.join(', '), 'margin:18px 0 0;color:#a98;font-size:12px');
+
+        function add(tag, chu, css) {
+          var n = document.createElement(tag);
+          n.textContent = chu;
+          n.style.cssText = css;
+          v.appendChild(n);
+          return n;
+        }
+      }
+
+      /* Xoa cache cua service worker roi go dang ky, sau do tai lai tu mang.
+         KHONG dung toi localStorage — tien do hoc nam o do (CLAUDE.md muc 1.4). */
+      function donDep() {
+        var xong = function () { location.reload(); };
+        var buoc = Promise.resolve();
+        try {
+          if (window.caches && caches.keys) {
+            buoc = buoc.then(function () { return caches.keys(); }).then(function (ks) {
+              return Promise.all(ks.map(function (k) { return caches.delete(k); }));
+            });
+          }
+          if (navigator.serviceWorker && navigator.serviceWorker.getRegistrations) {
+            buoc = buoc.then(function () { return navigator.serviceWorker.getRegistrations(); })
+              .then(function (rs) {
+                return Promise.all(rs.map(function (r) { return r.unregister(); }));
+              });
+          }
+          buoc.then(xong, xong);
+        } catch (e) { xong(); }
+        setTimeout(xong, 4000);   // luoi an toan: khong doi mai
+      }
+    })();
+
     // Service worker chi song tren http(s); mo bang file:// van chay binh thuong.
     if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
       window.addEventListener('load', function () {

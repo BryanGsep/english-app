@@ -63,6 +63,12 @@ games/registry.js → games/*.js → app.js`
 `tools/smoke.html` nạp lại đúng danh sách này — thêm file vào `index.html` thì phải
 thêm vào cả `smoke.html`, nếu không robot kiểm tra sẽ chạy với app thiếu script.
 
+Script cuối trong `index.html` **kiểm tra đủ 9 global** (`VOCAB` … `App`) trước khi gọi
+`App.start()`. Thiếu bất kỳ cái nào thì nó dựng màn "Bản cập nhật tải thiếu file" kèm nút
+dọn cache + gỡ service worker + tải lại — **không đụng tới localStorage**. Thêm global mới
+thì thêm tên vào mảng `CAN` đó. Không có lớp này thì một file rơi mất chỉ làm app chết
+lặng lẽ ở đúng màn hình dùng tới nó, người học không biết đường nào mà sửa.
+
 ## 3. Quy ước code
 
 - **Namespace toàn cục**, không module: `window.Store`, `window.SRS`, `window.Data`,
@@ -193,6 +199,10 @@ window.Games.register({
   thẻ. Đo bằng cách thả mặt sau về dòng chảy một nhịp (`position:static`) rồi đọc
   `offsetHeight` — đọc `scrollHeight` lúc còn bị flex ép thì đo bao nhiêu cũng thiếu
   (231 → 323 → 369 → vẫn chưa đủ).
+- **Màn "Kết quả" phải tự kéo trang lên đầu.** Đổi màn trong một phiên học không đi qua
+  `route()` nên không ai gọi `window.scrollTo(0, 0)`; bảng sửa sai của câu cuối đã đẩy
+  trang xuống 417–547px (đo được), thế là người học mở mắt ra ở giữa danh sách từ sai,
+  không hề thấy điểm số.
 - Game phải tự dọn `setInterval`/listener khi bị unmount (`root` bị xoá).
 - **Trả lời sai thì phải hiện đáp án đúng.** Dùng `UI.correction(root, card, next)` (chèn bảng
   sửa sai + nút "Tiếp tục", người học tự bấm đi tiếp) hoặc `UI.reveal(card, label, compact)`
@@ -214,6 +224,14 @@ Không sửa `app.js`.
   xong SRS. Nó tự ghi nhận qua `Store.award`, mỗi huy hiệu chỉ bật một lần.
 - `Celebrate.show(list)` mở lớp phủ chúc mừng; `Celebrate.wall()` dựng tủ huy hiệu ở màn
   Tiến độ. Lớp phủ tự đóng khi đổi `hashchange`, đừng để nó kẹt lại giữa các màn.
+- **Trang trí hỏng không được kéo sập màn hình.** `Art` và `Celebrate` chỉ vẽ, nên mọi
+  lời gọi tới chúng trong `app.js` phải bọc qua `deco(fn)` — hỏng thì trả `null` và bỏ
+  qua phần tranh, chứ điểm số/danh sách từ sai/nút đi tiếp vẫn phải hiện.
+  Đây là lỗi thật đã ra tới tay người dùng: `art.js` không nạp lên được thì
+  `Celebrate.cheer` ném lỗi ngay **dòng đầu tiên** của màn Kết quả, và người học nhận
+  một trang trắng chỉ còn mỗi chữ "Kết quả" (tái hiện được: chặn `art.js` hoặc
+  `celebrate.js` → `#view` cao đúng 78px). `tools/smoke.html` giả lập `Celebrate.cheer`
+  ném lỗi rồi chơi một vòng để canh đúng chuyện này.
 - **`id` huy hiệu là khoá ổn định** như `id` thẻ: đổi id = người học mất huy hiệu đã mở.
   Huy hiệu theo chặng lấy id `deck-<deck.id>`.
 - Trạng thái huy hiệu nằm trong `Store` ở trường `badges` (`id → thời điểm mở khoá`).
@@ -256,9 +274,9 @@ yêu cầu còn 5212 node — nhẹ hơn cả bản chưa có giải nghĩa (830
 |---|------|-----------|
 | 1 | `tools/check.py` | id trùng, thiếu `vi`, deck lạ, ví dụ không nguồn, **ghi chú trích dẫn tiếng Anh không có thật trong câu**, script thiếu/sai thứ tự trong `index.html`, game tự ghi SRS |
 | 2 | `node --check` | lỗi cú pháp JS |
-| 3 | `tools/sw_test.js` | service worker cache thiếu file, không dọn cache cũ, không đọc được khi mất mạng |
+| 3 | `tools/sw_test.js` | service worker cache thiếu file, không dọn cache cũ, không đọc được khi mất mạng, **trả `undefined` thay vì một `Response`** |
 | 4 | `tools/upgrade_test.js` | tiến độ của người dùng cũ có sống sót qua bản mới không |
-| 5 | `tools/smoke.html` | robot chơi **hết mọi game** + chế độ trộn tới màn kết quả, đếm lượt ghi SRS, xác nhận localStorage đã lưu, và **đo độ phủ thẻ** |
+| 5 | `tools/smoke.html` | robot chơi **hết mọi game** + chế độ trộn tới màn kết quả, đếm lượt ghi SRS, xác nhận localStorage đã lưu, **đo độ phủ thẻ**, và kiểm màn kết quả có sống sót khi phần lời chúc hỏng |
 | 6 | `tools/frame.html` | tràn ngang ở bề rộng thật 360px trên mọi màn hình |
 
 Bước 1 còn bắt luôn các hiểm hoạ GitHub Pages ở mục 1.7: file bắt đầu bằng `_`, thiếu
@@ -306,6 +324,16 @@ file, manifest, icon, và chơi thử mọi game qua HTTP.
 **Service worker.** Sửa bất kỳ file nào trong `ASSETS` của `sw.js` thì **phải tăng `CACHE`**,
 nếu không người dùng cũ giữ bản cũ. Thêm file vào `index.html` mà quên thêm vào `ASSETS` sẽ
 bị `tools/check.py` và `tools/sw_test.js` bắt.
+
+Hai luật nữa trong `fetch`, cả hai đều là đường dẫn tới một app chết lặng lẽ:
+
+- **Chỉ đọc đúng cache của bản mình** (`caches.open(CACHE).then(c => c.match(req))`).
+  `caches.match(req)` dò *mọi* cache còn sống, nên một lần tải trang rơi đúng lúc nâng cấp
+  có thể nhận nửa file bản cũ nửa file bản mới — `ui.js` cũ với `app.js` mới thì
+  `UI.gloss` không tồn tại và danh sách từ vỡ mà không báo gì.
+- **Không bao giờ `respondWith(undefined)`.** Mất mạng mà cache cũng không có mục đó thì
+  phải trả về một `Response` thật (504). Trả `undefined` làm trình duyệt báo lỗi mạng,
+  thẻ `<script>` đó không chạy, và app chạy tiếp với một global bị khuyết.
 
 Hai giới hạn đã đo được của Chrome headless trên máy này, đừng mất thời gian gỡ lại:
 nó **không đăng ký được** service worker (promise treo, không resolve cũng không reject),

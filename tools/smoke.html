@@ -104,8 +104,32 @@ var GAMES = window.Games.all().map(function (g) { return g.id; });
 var queue = GAMES.concat(['mix']);
 var idx = 0;
 
+/* Loi chuc/huy hieu chi la TRANG TRI. Neu art.js hay celebrate.js khong nap len
+   duoc thi man "Ket qua" van phai co diem so, danh sach tu sai va nut di tiep —
+   da tung hong that: thieu art.js thi man ket qua trong tron chi con tieu de. */
+function checkKetQuaKhiTrangTriHong(cb) {
+  var cuu = window.Celebrate.cheer;
+  window.Celebrate.cheer = function () { throw new Error('gia lap art.js khong nap duoc'); };
+  location.hash = '#/play/all/quiz';
+  setTimeout(function () {
+    robot(600, function () { return !!$('.result'); }, function (err) {
+      var box = $('.result');
+      var coDiem = !!box && /câu đúng/.test(box.textContent);
+      var coNut = all('.btn.wide', $('#view')).some(function (b) { return /Về trang chủ/.test(b.textContent); });
+      log.push((coDiem && coNut ? 'OK   ' : 'FAIL ') +
+               'man ket qua song sot khi loi chuc hong' +
+               (coDiem && coNut ? '' : ' — ' + (err || 'thieu diem so hoac nut di tiep')));
+      if (!coDiem || !coNut) errs.push('trang tri hong keo sap ca man ket qua');
+      window.Celebrate.cheer = cuu;
+      errs = errs.filter(function (m) { return !/gia lap art\.js/.test(m); });
+      location.hash = '#/';
+      setTimeout(cb, 60);
+    });
+  }, 120);
+}
+
 function runNext() {
-  if (idx >= queue.length) return finish();
+  if (idx >= queue.length) return checkKetQuaKhiTrangTriHong(finish);
   var id = queue[idx++]; log.push('-> bat dau ' + id); flush();
   var before = window.Store.get().totalReviews;
   probe = { handed: {}, asked: {}, rows: 0 };

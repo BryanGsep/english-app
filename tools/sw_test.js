@@ -63,8 +63,21 @@ const self = {
   location: { origin: ORIGIN },
   caches
 };
+/* Response gia lap — sw.js phai tra ve mot Response that khi mat mang va cache
+   cung khong co muc do; respondWith(undefined) lam <script> im lang khong chay. */
+class Response {
+  constructor(body, init) {
+    this.body = body;
+    init = init || {};
+    this.status = init.status || 200;
+    this.statusText = init.statusText || '';
+    this.headers = init.headers || {};
+  }
+  clone() { return this; }
+}
+
 const ctx = vm.createContext({
-  self, caches, URL, Promise, console,
+  self, caches, URL, Promise, console, Response,
   fetch: async (req) => {
     if (!networkUp) throw new Error('offline');
     return { url: req.url || req, status: 200, fromCache: false, clone() { return this; } };
@@ -151,6 +164,20 @@ function evt(waited) {
       (err ? 'sw.js nem loi thay vi tra ban cache: ' + err.message
            : (res ? 'tra ve ban tu mang chu khong phai cache' : 'khong tra ve gi')));
   }
+
+  /* MAT MANG MA CACHE CUNG KHONG CO muc do (cache bi don bot, hay file moi them
+     chua kip cache): sw.js van phai tra ve MOT Response. Tra ve undefined thi
+     trinh duyet bao loi mang, the <script> khong chay, va app chet nua voi —
+     dung cai da lam man "Ket qua" trong tron chi con moi tieu de. */
+  networkUp = false;
+  const w5 = [];
+  handlers.fetch({ ...evt(w5), request: { method: 'GET', url: BASE + 'assets/js/khong-he-co.js' } });
+  let r5 = null, e5 = null;
+  try { r5 = await w5[0]; } catch (e) { e5 = e; }
+  check(!!r5 && typeof r5.status === 'number',
+    'mat mang + cache khong co muc: van tra ve mot Response',
+    r5 ? 'status ' + r5.status : (e5 ? 'nem loi: ' + e5.message : 'tra ve undefined'));
+  networkUp = true;
 
   /* khong duoc chen ngang POST hay request khac origin */
   let w3 = [];

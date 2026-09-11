@@ -8,6 +8,22 @@
 
   /* ---------- helper ---------- */
 
+  /**
+   * Chay mot mieng TRANG TRI (loi chuc, huy hieu, tranh SVG).
+   * Art va Celebrate chi ve (CLAUDE.md muc 5b) — mot file khong nap duoc hay mot
+   * loi trong do KHONG duoc phep nuot ca man hinh. Da xay ra that: art.js khong
+   * nap len duoc thi `Celebrate.cheer` nem loi ngay dong dau cua man Ket qua,
+   * nguoi hoc thay mot trang hong rong tron chi con chu "Ket qua".
+   * Tra ve null khi hong; nguoi goi tu quyet dinh bo qua.
+   */
+  function deco(fn) {
+    try { return fn(); }
+    catch (e) {
+      if (window.console && console.error) console.error('phan trang tri hong:', e);
+      return null;
+    }
+  }
+
   function header(title, backHash, right) {
     var h = UI.el('header', 'topbar');
     if (backHash != null) {
@@ -137,9 +153,11 @@
     });
     view.appendChild(path);
 
-    var bc = window.Celebrate.counts();
-    view.appendChild(UI.btn('🎀 Huy hiệu đã mở khoá: ' + bc.got + '/' + bc.total, 'wide',
-      function () { location.hash = '#/stats'; }));
+    var bc = deco(function () { return window.Celebrate.counts(); });
+    if (bc) {
+      view.appendChild(UI.btn('🎀 Huy hiệu đã mở khoá: ' + bc.got + '/' + bc.total, 'wide',
+        function () { location.hash = '#/stats'; }));
+    }
 
     var links = UI.el('div', 'row gap');
     links.appendChild(UI.btn('📊 Tiến độ', 'wide', function () { location.hash = '#/stats'; }));
@@ -427,8 +445,13 @@
     var acc = res.length ? Math.round(right / res.length * 100) : 0;
 
     UI.clear(view);
+    // Man choi vua roi da bi cuon xuong (bang sua sai cao ~700px). Doi man hinh
+    // trong mot phien khong di qua route() nen phai tu keo len, khong thi diem so
+    // nam tren dinh trang ma nguoi hoc mo mat ra o giua danh sach tu sai.
+    window.scrollTo(0, 0);
     view.appendChild(header('Kết quả', '#/'));
-    view.appendChild(window.Celebrate.cheer(acc, res.length));
+    var joy = deco(function () { return window.Celebrate.cheer(acc, res.length); });
+    if (joy) view.appendChild(joy);
     var box = UI.el('div', 'result');
     box.appendChild(UI.ring(acc, acc + '%', 'chính xác'));
     box.appendChild(UI.el('p', 'big', right + '/' + res.length + ' câu đúng'));
@@ -462,11 +485,14 @@
     view.appendChild(row);
 
     // Moc thanh tich: cham lai mot nhip de nguoi hoc kip nhin diem truoc.
-    var fresh = window.Celebrate.check({ total: res.length, acc: acc });
+    var fresh = deco(function () {
+      return window.Celebrate.check({ total: res.length, acc: acc });
+    }) || [];
     if (fresh.length) {
       var tick = screenTick;
       setTimeout(function () {
-        if (tick === screenTick && view.querySelector('.result')) window.Celebrate.show(fresh);
+        if (tick !== screenTick || !view.querySelector('.result')) return;
+        deco(function () { window.Celebrate.show(fresh); });
       }, 560);
     }
   }
@@ -545,11 +571,14 @@
     });
     view.appendChild(g);
 
-    var bc = window.Celebrate.counts();
-    view.appendChild(UI.el('h2', 'section', 'Huy hiệu — ' + bc.got + '/' + bc.total));
-    view.appendChild(UI.el('p', 'micro pad',
-      'Chạm vào một huy hiệu để xem lời chúc và điều kiện mở khoá.'));
-    view.appendChild(window.Celebrate.wall());
+    var bc = deco(function () { return window.Celebrate.counts(); });
+    var wall = bc && deco(function () { return window.Celebrate.wall(); });
+    if (wall) {
+      view.appendChild(UI.el('h2', 'section', 'Huy hiệu — ' + bc.got + '/' + bc.total));
+      view.appendChild(UI.el('p', 'micro pad',
+        'Chạm vào một huy hiệu để xem lời chúc và điều kiện mở khoá.'));
+      view.appendChild(wall);
+    }
 
     view.appendChild(UI.btn('📖 Xem toàn bộ từ vựng', 'wide', function () { location.hash = '#/list/all'; }));
   }
